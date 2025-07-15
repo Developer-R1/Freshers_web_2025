@@ -1,0 +1,29 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block title %}Register | Freshers Day{% endblock %}
+
+{% block content %}
+
+<button class="back-button"  type="button">
+    <img src="{% static 'line 19.svg' %}" alt="back icon" width="20" height="20">
+    <a href="{% url 'login_user' %}" style="color: inherit; text-decoration: none;">Back to Sign In</a>
+</button>
+
+<div class="header">
+    <h1>Freshers Day</h1><span>25'</span>
+</div>
+    <form action="{% url 'register_user' %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="form-button">Sign Up</button>
+    </form>
+
+
+{% endblock %}

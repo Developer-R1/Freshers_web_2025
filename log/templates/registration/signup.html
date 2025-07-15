@@ -1,0 +1,49 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block title %}Register | Freshers Day{% endblock %}
+
+{% block content %}
+<button class="back-button" type="button">
+    <img src="{% static 'line 19.svg' %}" alt="back icon" width="20" height="20">
+    Back to Sign In
+</button>
+
+<div class="header">
+    <h1>Freshers Day</h1><span>25'</span>
+</div>
+
+<form action="{% url 'register_user' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input placeholder="Enter your email" type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="username">Name</label>
+        <input placeholder="Enter your name" type="text" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password1">Password</label>
+        <input placeholder="Enter your password" type="password" id="password1" name="password1" required>
+    </div>
+    <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        <input placeholder="Confirm your password" type="password" id="password2" name="password2" required>
+
+    </div>
+
+    <div class="form-group">
+        <label for="department">Select your department:</label>
+        <select id="department" name="department" required>
+            <option disabled selected>Select a department</option>
+            <option value="CSE">Computer Science Engineering (CSE)</option>
+            <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+            <option value="EEE">Electrical and Electronics Engineering (EEE)</option>
+            <option value="MECH">Mechanical Engineering (MECH)</option>
+            <option value="CIVIL">Civil Engineering (CIVIL)</option>
+        </select>
+    </div>
+    <button type="submit" class="form-button">Sign Up</button>
+</form>
+
+{% endblock %}

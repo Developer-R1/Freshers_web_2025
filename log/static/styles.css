@@ -1,0 +1,214 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form Container */
+.form-container {
+    width: 75%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3.5rem;
+    background: linear-gradient(90deg, #249F9C, #074A48, #249F9C);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s linear infinite;
+}
+
+.header span {
+    background: linear-gradient(90deg, #249F9C, #074A48, #249F9C);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s linear infinite;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Form Field Styling */
+.form-group {
+    margin-bottom: 5px;
+    
+    padding:  10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #015553;
+    opacity: 0.8;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #074A48;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #2BB7B4;
+    box-shadow: 0 0 6px rgba(43, 183, 180, 0.4);
+    outline: none;
+    background-color: #fff;
+}
+
+select:hover {
+    transform: scale(1.02);
+}
+
+/* Submit Button */
+.form-button {
+    display: block;
+    width: 30%;
+    margin: 0 auto; /* 🔥 this centers it horizontally */
+    padding: 12px;
+    font-size: 16px;
+    background-color: #F44786;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+
+.form-button:hover {
+    background-color: #d93672;
+    transform: scale(1.03);
+}
+
+/* Back Button */
+.back-button {
+    background: none;
+    border: none;
+    color: #F44786;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    color: #D93672;
+    transform: translateX(-3px);
+}
+
+.back-button img {
+    margin-bottom: 1px;
+}
+
+/* Buttons Layout */
+.buttons-forms {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 8%;
+    
+}
+
+.buttons-forms a {
+    background-color: transparent;
+    border: none;
+    color: #F44786;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.buttons-forms a:hover {
+    background-color: #F44786;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Alert Message Styling */
+.alert {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.alert .error-message {
+    background-color: #ffe0e0;
+    color: #b40000;
+    border: 1px solid #ff7b7b;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.alert .success-message {
+    background-color: #e0fff2;
+    color: #007a44;
+    border: 1px solid #77e3ba;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gradient Animation for Header */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+

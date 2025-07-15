@@ -1,0 +1,14 @@
+{% extends "registration/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+ {% if user.is_authenticated %}
+     <h2>Welcome back, {{ user.username }}!</h2>
+     <a href="{% url 'logout_user' %}">Logout</a>
+ {% else %}
+     <h2>Welcome to the Home Page!</h2>
+     <a href="{% url 'login_user' %}">Login</a>
+     <a href="{% url 'register_user' %}">Register</a>
+ {% endif %}
+ {% endblock %}
