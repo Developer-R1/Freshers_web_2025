@@ -1,7 +1,9 @@
 {% extends 'registration/base.html' %}
 {% load static %}
 {% block title %}Register | Freshers Day{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% endblock %}
 {% block content %}
 <button class="back-button" type="button">
     <img src="{% static 'line 19.svg' %}" alt="back icon" width="20" height="20">

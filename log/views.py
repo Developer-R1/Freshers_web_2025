@@ -13,6 +13,9 @@ def home(request):
 def schedule(request):
     return render(request, "registration/schedule.html")
 
+def event(request):
+    return render(request, "registration/events.html")
+
 # Login view
 def login_user(request):
     if request.method == "POST":

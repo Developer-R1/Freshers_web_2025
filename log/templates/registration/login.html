@@ -1,7 +1,9 @@
 {% extends 'registration/base.html' %}
 
 {% block title %}Login | Freshers Day{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% endblock %}
 {% block content %}
 <div class="header">
     <h1>Freshers Day</h1><span>25'</span>

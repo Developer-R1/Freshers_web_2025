@@ -1,0 +1,77 @@
+{% extends "registration/base.html" %}
+{% load static %}
+
+{# ——— override the <title> in <head> ——— #}
+{% block title %}Game Events{% endblock %}
+
+{# ———  optional: add page‑specific CSS  ——— #}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'events.css' %}">
+{% endblock %}
+
+{# ———  main page content  ——— #}
+{% block content %}
+<div class="container">
+    <h1 class="heading">Game Events</h1>
+    <p class="subtext">
+        Deadly games await. Each one a test of skill, strategy, and survival.
+        Choose wisely – your fate depends on it
+    </p>
+
+    <!-- Tabs -->
+    <ul class="tabs" id="eventTabs">
+        <li><button class="tab-button active" data-category="all">All Events</button></li>
+        <li><button class="tab-button" data-category="individual">Individual Events</button></li>
+        <li><button class="tab-button" data-category="team">Team Events</button></li>
+    </ul>
+
+    <!-- Event Cards -->
+    <div class="event-grid" id="eventContainer">
+        {% for event in events %}
+        <div class="event-card" data-type="{{ event.event_type }}">
+            <div class="card">
+                <div class="card-body">
+                    <div class="title-status">
+    <h5 class="title">{{ event.title }}</h5>
+    <span class="status {{ event.status|lower }}">{{ event.status }}</span>
+</div>
+                    <p class="description">{{ event.description }}</p>
+
+                    <ul class="event-details">
+                        <li>{{ event.date }} | {{ event.time }}</li>
+                        <li>{{ event.venue }}</li>
+                        <li>₹{{ event.prize }} for Winner</li>
+                    </ul>
+
+                    <div class="progress-section">
+                        <label>Participants: {{ event.participants }}/{{ event.capacity }}</label>
+                        <div class="progress-bar">
+                            <div class="progress-fill"
+                                 style="width: {{ event.participants|divisibleby:event.capacity }}%;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-row">
+                        <a class="btn-pink">Join Now</a>
+                        <a class="btn-outline">Rules</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Prize Pool -->
+    <div class="prize-pool">
+        <h2>TOTAL PRIZE POOL</h2>
+        <h1>$10000</h1>
+        <p>Win big in the ultimate freshers competition. Multiple winners across all events!</p>
+    </div>
+</div>
+{% endblock %}
+
+{# ———  optional: page‑specific JS  ——— #}
+{% block extra_js %}
+<script src="{% static 'js/events.js' %}"></script>
+{% endblock %}

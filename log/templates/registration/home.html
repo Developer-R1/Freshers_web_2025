@@ -1,7 +1,9 @@
 {% extends "registration/base.html" %}
 {% load static %}
 {% block title %}Home{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% endblock %}
 {% block content %}
  {% if user.is_authenticated %}
      <h2>Welcome back, {{ user.username }}!</h2>
