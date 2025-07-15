@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Team</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-pink: #ff2c8a;
+      --primary-teal: #00b2b8;
+      --light-bg: #ffffff;
+      --text-dark: #000;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: var(--primary-pink);
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-dark) !important;
+    }
+
+    .btn-pink {
+      background-color: var(--primary-pink);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-pink:hover {
+      background-color: #e6257a;
+    }
+
+    .stats-box {
+      border: 1.5px solid var(--primary-teal);
+      border-radius: 10px;
+      padding: 1.2rem;
+      color: var(--primary-teal);
+      background-color: #f8f9fa;
+    }
+
+    .stats-box i {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-tabs .nav-link.active {
+      background-color: var(--primary-teal);
+      color: white;
+      border-radius: 10px;
+    }
+
+    .team-tabs .nav-link {
+      color: var(--text-dark);
+    }
+
+    .team-card {
+      border: 1px solid var(--primary-teal);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-badge {
+      background-color: var(--primary-teal);
+      color: white;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm px-4">
+  <a class="navbar-brand" href="#">Our Team</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item mx-2"><a class="nav-link" href="#">Events</a></li>
+      <li class="nav-item mx-2"><a class="nav-link" href="#">Schedule</a></li>
+      <li class="nav-item mx-2"><a class="nav-link" href="#">Teams</a></li>
+      <li class="nav-item mx-2"><a class="btn btn-pink" href="#">Sign In</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Header -->
+<div class="text-center mt-4">
+  <h1 class="fw-bold" style="color: var(--primary-pink);">Our Team</h1>
+</div>
+
+<!-- Stats -->
+<div class="container mt-4">
+  <div class="row text-center g-4">
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-people-fill"></i><h5>9</h5><p>Total Members</p></div></div>
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-lightbulb"></i><h5>6</h5><p>Departments</p></div></div>
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-cup-hot"></i><h5>100+</h5><p>Coffee Consumed</p></div></div>
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-clock"></i><h5>96+</h5><p>Hours Coded</p></div></div>
+  </div>
+</div>
+
+<!-- Team Tabs -->
+<div class="container mt-5">
+  <ul class="nav nav-pills justify-content-center team-tabs mb-3" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#dev">Development</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#design">Design</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#marketing">Marketing</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#ops">Operations</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#ops">event management</button></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="dev">
+      <div class="text-center mb-3"><h5 class="fw-semibold" style="color: var(--primary-teal);">Development Team</h5></div>
+      <div id="dev-team"></div>
+    </div>
+    <div class="tab-pane fade" id="design">
+      <div class="text-center mb-3"><h5 class="fw-semibold" style="color: var(--primary-teal);">Design Team</h5></div>
+      <div id="design-team"></div>
+    </div>
+    <div class="tab-pane fade" id="marketing">
+      <div class="text-center mb-3"><h5 class="fw-semibold" style="color: var(--primary-teal);">Marketing Team</h5></div>
+      <div id="marketing-team"></div>
+    </div>
+    <div class="tab-pane fade" id="ops">
+      <div class="text-center mb-3"><h5 class="fw-semibold" style="color: var(--primary-teal);">Operations Team</h5></div>
+      <div id="ops-team"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript: Dynamic Team Injection -->
+<script>
+const teamsData = {
+  dev: [
+    {
+      name: "Akash",
+      role: "Lead Full Stack Developer",
+      year: "Computer Science 2nd year",
+      skills: "React.js, Node.js, Next.js",
+      location: "Main Auditorium",
+      bio: "Passionate about creating immersive web experiences. Led the development of the entire freshers platform."
+    },
+    {
+      name: "Aaron",
+      role: "Backend Engineer",
+      year: "Computer Science 3rd year",
+      skills: "Django, MySQL, REST APIs",
+      location: "Lab 1",
+      bio: "Focused on scalable backend systems and integration."
+    }
+  ],
+  design: [
+    {
+      name: "Akash",
+      role: "UI/UX Designer",
+      year: "ECE 2nd year",
+      skills: "Figma, Adobe XD",
+      location: "Design Studio",
+      bio: "Designs clean and modern interfaces with user-first thinking."
+    }
+  ],
+  marketing: [
+    {
+      name: "Aaron",
+      role: "Marketing Lead",
+      year: "Mechanical 4th year",
+      skills: "Social Media, Campaigns",
+      location: "Room 205",
+      bio: "Strategized outreach campaigns and boosted engagement 200%."
+    }
+  ],
+  ops: [
+    {
+      name: "Akash",
+      role: "Operations Head",
+      year: "Civil 3rd year",
+      skills: "Logistics, Planning",
+      location: "Admin Office",
+      bio: "Coordinates execution of all offline and online operations."
+    }
+  ]
+};
+
+function renderTeams() {
+  for (const dept in teamsData) {
+    const container = document.getElementById(`${dept}-team`);
+    if (!container) continue;
+
+    container.innerHTML = teamsData[dept].map(member => `
+      <div class="team-card">
+        <span class="highlight-badge">${member.role}</span>
+        <h6 class="mt-2 mb-0">${member.name}</h6>
+        <small>${member.year}</small><br>
+        <small>${member.skills}</small>
+        <p class="mt-3">${member.bio}</p>
+        <p><i class="bi bi-geo-alt-fill"></i> ${member.location}</p>
+      </div>
+    `).join('');
+  }
+}
+
+renderTeams();
+</script>
+
+</body>
+</html>
