@@ -1,0 +1,22 @@
+/* static/css/events.css */
+
+.btn-pink {
+    background-color: #fc466b;
+    color: white;
+    border: none;
+}
+
+.btn-pink:hover {
+    background-color: #d63b5f;
+    color: white;
+}
+
+.nav-pills .nav-link {
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #3f5efb;
+    color: white;
+}
