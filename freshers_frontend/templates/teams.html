@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Our Teams {% endblock %}
+
+{% block extra_css %}
+
+<style>
+    :root {
+      --primary-pink: #ff2c8a;
+      --primary-teal: #00b2b8;
+      --light-bg: #ffffff;
+      --text-dark: #000;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: var(--primary-pink);
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-dark) !important;
+    }
+
+    .btn-pink {
+      background-color: var(--primary-pink);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-pink:hover {
+      background-color: #e6257a;
+    }
+
+    .stats-box {
+      border: 1.5px solid var(--primary-teal);
+      border-radius: 10px;
+      padding: 1.2rem;
+      color: var(--primary-teal);
+      background-color: #f8f9fa;
+    }
+
+    .stats-box i {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-tabs .nav-link.active {
+      background-color: var(--primary-teal);
+      color: white;
+      border-radius: 10px;
+    }
+
+    .team-tabs .nav-link {
+      color: var(--text-dark);
+    }
+
+    .team-card {
+      border: 1px solid var(--primary-teal);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-badge {
+      background-color: var(--primary-teal);
+      color: white;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 5px;
+    }
+  </style>
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center mt-4">
+  <h1 class="fw-bold" style="color: var(--primary-pink);">Our Team</h1>
+</div>
+
+<!-- Stats -->
+<div class="container mt-4">
+  <div class="row text-center g-4">
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-people-fill"></i><h5>{{ total_members }}</h5><p>Total Members</p></div></div>
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-lightbulb"></i><h5>{{ total_departments }}</h5><p>Departments</p></div></div>
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-cup-hot"></i><h5>100+</h5><p>Coffee Consumed</p></div></div>
+    <div class="col-md-3"><div class="stats-box"><i class="bi bi-clock"></i><h5>96+</h5><p>Hours Coded</p></div></div>
+  </div>
+</div>
+
+<!-- Team Tabs -->
+<div class="container mt-5">
+  <ul class="nav nav-pills justify-content-center team-tabs mb-3" role="tablist">
+    {% for category in teams_by_category.keys %}
+      <li class="nav-item">
+        <button class="nav-link {% if forloop.first %}active{% endif %}" data-bs-toggle="pill" data-bs-target="#{{ category|slugify }}">{{ category|capfirst }}</button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="tab-content">
+    {% for category, members in teams_by_category.items %}
+    <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ category|slugify }}">
+      <div class="text-center mb-3">
+        <h5 class="fw-semibold" style="color: var(--primary-teal);">{{ category|capfirst }} Team</h5>
+      </div>
+      <div class="row justify-content-center">
+        {% for member in members %}
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 text-center border-0 shadow-sm">
+            <img src="{{ member.photo.url }}" class="card-img-top rounded-circle p-3" alt="{{ member.name }}">
+            <div class="card-body">
+              <h5 class="card-title mb-1">{{ member.name }}</h5>
+              <p class="text-muted small">{{ member.role }}</p>
+              {% if member.linkedin %}
+              <a href="{{ member.linkedin }}" target="_blank" class="text-decoration-none">
+                <i class="bi bi-linkedin fs-4"></i>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+// Assume `teamsContext` is passed from Django using a safe script tag
+// Example: <script>const teamsContext = {{ teams_json|safe }};
+const teamsContext = JSON.parse('{{ teams_json|escapejs }}');
+
+function createTeamCard(member) {
+  return `
+    <div class="team-card text-center">
+      <img src="${member.image_url}" alt="${member.name}" class="img-fluid rounded-circle mb-2" style="width:100px; height:100px; object-fit:cover;">
+      <h6 class="mt-2 mb-0">${member.name}</h6>
+      <span class="highlight-badge">${member.role}</span><br>
+      <small>${member.department} - ${member.year}</small><br>
+      <small>${member.skills}</small>
+      <p class="mt-2">${member.bio}</p>
+      ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" class="btn btn-sm btn-pink"><i class="bi bi-linkedin"></i> LinkedIn</a>` : ''}
+    </div>
+  `;
+}
+
+function renderDynamicTeams(data) {
+  for (const dept in data) {
+    const container = document.getElementById(`${dept}-team`);
+    if (!container) continue;
+
+    container.innerHTML = data[dept]
+      .map(member => createTeamCard(member))
+      .join('');
+  }
+}
+
+// Sample fallback data for dev only (remove this block in production)
+const fallback = {
+  dev: [
+    {
+      name: "Akash",
+      role: "Full Stack Developer",
+      department: "CSE",
+      year: "2nd year",
+      skills: "React, Django",
+      image_url: "/static/images/teams_head/akash.jpg",
+      linkedin: "https://linkedin.com/in/akash-dev",
+      bio: "Passionate full stack developer."
+    }
+  ]
+};
+
+// Use `teamsContext` if available, else fallback
+renderDynamicTeams(typeof teamsContext !== 'undefined' ? teamsContext : fallback);
+</script>
+
+{% endblock %}
