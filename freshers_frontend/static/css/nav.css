@@ -1,0 +1,128 @@
+.custom-navbar {
+        background-color: #ffffff; /* White background */
+        padding: 0.75rem 2rem; /* Adjusted padding */
+        display: flex;
+        justify-content: flex-end; /* Aligns all items to the right */
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
+    }
+
+    /* Hamburger menu button */
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+    
+
+    .navbar-toggler-icon {
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+    }
+
+    /* Collapsible container */
+    .navbar-collapse {
+        display: none; /* Hidden on mobile */
+        flex-basis: 100%;
+        flex-grow: 1;
+        align-items: center;
+    }
+
+    .navbar-collapse.show {
+        display: block;
+    }
+    .navbar-brand{
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #FF357F; /* Dark teal color from image */
+        text-decoration: none;
+        margin-right: 1.5rem; /* Space between brand and nav items */
+    }
+
+    /* The list of navigation items */
+    .navbar-nav {
+        list-style: none;
+        padding-left: 0;
+        margin-left: auto;
+        
+        display: flex;
+        flex-direction: column; /* Mobile-first: vertical stack */
+    }
+    
+    /* Navigation links - Updated style */
+    .nav-link {
+        display: block;
+        font-size: 1.1rem;
+        padding: 0.7rem 1.5rem;
+        text-decoration: none;
+         /* Dark teal color from image */
+        font-weight: 750; /* Slightly bold */
+        text-transform: uppercase; /* Uppercase text */
+        
+        color: #00807e;
+
+
+line-height: normal;
+    }
+    
+
+    .nav-link:hover {
+        color: #ff2e9b; /* Use pink for hover effect */
+    }
+
+    /* SIGN IN / LOGOUT Button Styling */
+    .btn-link {
+        color: #fff;
+         /* Pink color from image */
+         /* Rounded corners */
+        text-align: center;
+         /* Adjusted padding */
+        margin: 0.25rem 0;
+        transition: background-color 0.2s;
+        border-radius: 15px;
+        
+        background: #FF357F;
+    }
+    .btn-link:hover {
+        background-color: #d93672;
+    transform: scale(1.03);
+        color: #fff;
+    }
+    
+    /* Media Query for desktop screens (>= 992px) */
+    @media (min-width: 992px) {
+        .custom-navbar {
+            flex-wrap: nowrap; /* Prevent wrapping on desktop */
+        }
+        .navbar-toggler {
+            display: none; /* Hide hamburger */
+        }
+
+        .navbar-collapse {
+            display: flex !important;
+            flex-basis: auto;
+        }
+
+        .navbar-nav {
+            flex-direction: row; /* Horizontal layout on desktop */
+            align-items: center;
+        }
+
+        .nav-link {
+            padding-right: 0.75rem;
+            padding-left: 0.75rem;
+        }
+        
+        .btn-link {
+             margin: 0 0 0 0.75rem;
+        }
+    }

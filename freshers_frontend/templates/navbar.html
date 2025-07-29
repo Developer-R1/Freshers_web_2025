@@ -1,0 +1,47 @@
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}">
+
+<nav class="custom-navbar">
+    <button class="navbar-toggler" type="button" id="navbar-toggle-button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="navbar-collapse" id="Nav">
+        <a class="navbar-brand" href="{% url 'home' %}">Freshers Day</a>
+      
+        <ul class="navbar-nav">
+          
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'events' %}">EVENTS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'schedule' %}">SCHEDULES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'teams' %}">TEAMS</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link btn-link" href="{% url 'logout' %}">LOGOUT</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link btn-link" href="{% url 'signup' %}">SIGN IN</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+
+<script>
+    // JavaScript to make the mobile toggle button work
+    const toggleButton = document.getElementById('navbar-toggle-button');
+    const navMenu = document.getElementById('Nav');
+
+    if (toggleButton && navMenu) {
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+    }
+</script>

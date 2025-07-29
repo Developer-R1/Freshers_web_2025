@@ -1,0 +1,228 @@
+/* --- General & Variables --- */
+:root {
+    --primary-pink: #F62672;
+    --primary-teal: #2BB7B4;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-text: #212529;
+    --muted-text: #6c757d;
+    --background-color: #fff;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    
+    background-color: var(--background-color);
+    color: var(--dark-text);
+    margin: 0;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Header --- */
+.team-header {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    
+}
+
+.team-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-pink);
+    
+}
+
+/* --- Stats Grid --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.stat-item {
+    background-color: #fff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--medium-gray);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.stat-item i {
+    font-size: 2.5rem;
+    color: var(--primary-teal);
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.stat-item h5 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.stat-item p {
+    color: var(--muted-text);
+    margin: 0;
+}
+
+/* --- Tabs System --- */
+.tabs-container {
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.tabs__nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tabs__button {
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-teal);
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tabs__button:hover {
+    background-color: rgba(43, 183, 180, 0.1);
+}
+
+.tabs__button--active {
+    background-color: var(--primary-teal);
+    color: #fff;
+}
+
+.tabs__pane {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tabs__pane--active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- Team Grid & Cards --- */
+.team-category-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.team-category-header h2 {
+    color: var(--primary-teal);
+    font-weight: 600;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.team-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.team-card__image-wrapper {
+    background-color: var(--light-gray);
+    padding: 20px;
+}
+
+.team-card__image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-card__body {
+    padding: 20px;
+}
+
+.team-card__name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+
+.team-card__role {
+    color: var(--muted-text);
+    font-size: 0.9rem;
+    margin: 0 0 15px 0;
+}
+
+.team-card__linkedin i {
+    font-size: 1.75rem;
+    color: #0077b5;
+    transition: color 0.3s ease;
+}
+
+.team-card__linkedin:hover i {
+    color: #005582;
+}
+
+/* --- Basic Icon Font Placeholder --- */
+/* Replace this with your actual icon font library if you have one */
+@font-face {
+  font-family: 'bootstrap-icons';
+  src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/fonts/bootstrap-icons.woff2?24e3a78a42007412e755b761a93e38a9") format('woff2');
+}
+
+[class^="icon-"]::before {
+  font-family: 'bootstrap-icons', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-people::before { content: "\F47D"; }
+.icon-lightbulb::before { content: "\F44A"; }
+.icon-coffee::before { content: "\F2C7"; }
+.icon-clock::before { content: "\F292"; }
+.icon-linkedin::before { content: "\F471"; }

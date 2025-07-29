@@ -1,0 +1,112 @@
+
+
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Our Team{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="team-header">
+        <h1>Our Team</h1>
+    </div>
+<link rel="stylesheet" href="{% static 'css/teams.css' %}">
+    <!-- Stats Section -->
+    <div class="stats-grid">
+        <div class="stat-item">
+            <i class="icon-people"></i>
+            <h5>{{ total_members }}</h5>
+            <p>Total Members</p>
+        </div>
+        <div class="stat-item">
+            <i class="icon-lightbulb"></i>
+            <h5>{{ total_departments }}</h5>
+            <p>Departments</p>
+        </div>
+        <div class="stat-item">
+            <i class="icon-coffee"></i>
+            <h5>100+</h5>
+            <p>Coffee Consumed</p>
+        </div>
+        <div class="stat-item">
+            <i class="icon-clock"></i>
+            <h5>96+</h5>
+            <p>Hours Coded</p>
+        </div>
+    </div>
+
+    <!-- Team Tabs -->
+    <div class="tabs-container">
+        <div class="tabs__nav">
+            {% for category in teams_by_category.keys %}
+                <button class="tabs__button {% if forloop.first %}tabs__button--active{% endif %}" data-tab-target="#tab-{{ category|slugify }}">{{ category|capfirst }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="tabs__content">
+            {% for category, members in teams_by_category.items %}
+            <div class="tabs__pane {% if forloop.first %}tabs__pane--active{% endif %}" id="tab-{{ category|slugify }}">
+                <div class="team-category-header">
+                    <h2>{{ category|capfirst }} Team</h2>
+                </div>
+                <div class="team-grid">
+                    {% for member in members %}
+                    <div class="team-card">
+                        <div class="team-card__image-wrapper">
+                            <img src="{{ member.photo.url }}" class="team-card__image" alt="{{ member.name }}">
+                        </div>
+                        <div class="team-card__body">
+                            <h3 class="team-card__name">{{ member.name }}</h3>
+                            <p class="team-card__role">{{ member.role }}</p>
+                            {% if member.linkedin %}
+                            <a href="{{ member.linkedin }}" target="_blank" class="team-card__linkedin">
+                                <i class="icon-linkedin"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const tabsContainer = document.querySelector('.tabs-container');
+    if (!tabsContainer) return;
+
+    const tabNav = tabsContainer.querySelector('.tabs__nav');
+    const tabButtons = tabNav.querySelectorAll('.tabs__button');
+    const tabPanes = tabsContainer.querySelectorAll('.tabs__pane');
+
+    tabNav.addEventListener('click', function(e) {
+        const clickedButton = e.target.closest('.tabs__button');
+        if (!clickedButton) return;
+
+        // Deactivate all buttons and panes
+        tabButtons.forEach(button => {
+            button.classList.remove('tabs__button--active');
+        });
+        tabPanes.forEach(pane => {
+            pane.classList.remove('tabs__pane--active');
+        });
+
+        // Activate the clicked button
+        clickedButton.classList.add('tabs__button--active');
+
+        // Activate the corresponding pane
+        const targetPaneId = clickedButton.dataset.tabTarget;
+        const targetPane = document.querySelector(targetPaneId);
+        if (targetPane) {
+            targetPane.classList.add('tabs__pane--active');
+        }
+    });
+});
+
+</script>
+{% endblock %}

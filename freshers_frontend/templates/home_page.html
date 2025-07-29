@@ -1,0 +1,102 @@
+
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+
+{% load static %}
+  
+
+{% block content %}
+<div class="home-con">
+  <h4 style="color: rgba(30, 30, 30, 0.82);
+font-size: 2rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;">Welcome to NIT PY's</h4>
+  <link rel="stylesheet" href="{% static 'css/Homepage.css' %}">
+  
+  <h1 class="main-title">Freshers Day<span class="year-suffix">25'</span></h1>
+
+  <h2 class="sub-title">Survive the Games, Claim the Glory!</h2>
+  
+  <p class="description">
+    Join the ultimate battle of wits, strength, and teamwork. Only the strongest will survive!
+  </p>
+  
+  <button class="register-btn">Register Now</button>
+
+  <div class="timer-box">
+    <h3 class="timer-title"><em>The Games Begin In...</em></h3>
+    <div class="d-flex justify-content-center mt-4 gap-3 gap-md-4">
+      <div>
+        <div class="time-unit" id="days">05</div>
+        <div class="time-label">Days</div>
+      </div>
+      <div>
+        <div class="time-unit" id="hours">23</div>
+        <div class="time-label">Hours</div>
+      </div>
+      <div>
+        <div class="time-unit" id="minutes">09</div>
+        <div class="time-label">Minutes</div>
+      </div>
+      <div>
+        <div class="time-unit" id="seconds">05</div>
+        <div class="time-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions-container">
+    <a href="{% url 'schedule' %}" class="outline-btn">Schedule</a>
+    <a href="{% url 'teams' %}" class="outline-btn">Teams</a>
+    <a href="{% url 'events' %}" class="outline-btn">Events</a>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Set a specific future date for a real countdown.
+    // Example: July 31, 2025 at midnight.
+    const countDownDate = new Date("Jul 31, 2025 23:59:59").getTime();
+
+    const daysSpan = document.getElementById("days");
+    const hoursSpan = document.getElementById("hours");
+    const minutesSpan = document.getElementById("minutes");
+    const secondsSpan = document.getElementById("seconds");
+
+    const x = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      // If the countdown is over, display text
+      if (distance < 0) {
+        clearInterval(x);
+        document.querySelector(".timer-title").innerHTML = "The Games Have Begun!";
+        daysSpan.innerHTML = "00";
+        hoursSpan.innerHTML = "00";
+        minutesSpan.innerHTML = "00";
+        secondsSpan.innerHTML = "00";
+        return;
+      }
+
+      // Time calculations
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Update the HTML elements, adding a "0" if the number is less than 10
+      daysSpan.innerHTML = String(days).padStart(2, '0');
+      hoursSpan.innerHTML = String(hours).padStart(2, '0');
+      minutesSpan.innerHTML = String(minutes).padStart(2, '0');
+      secondsSpan.innerHTML = String(seconds).padStart(2, '0');
+    }, 1000);
+</script>
+{% endblock %}

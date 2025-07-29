@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Game Events {% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/events.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="heading">Game Events</h1>
+    <p class="subtext">
+        Deadly games await. Each one a test of skill, strategy, and survival.
+        Choose wisely – your fate depends on it
+    </p>
+
+    <!-- Tabs -->
+    <ul class="tabs" id="eventTabs">
+        <li><button class="tab-button active" data-category="all">All Events</button></li>
+        <li><button class="tab-button" data-category="individual">Individual Events</button></li>
+        <li><button class="tab-button" data-category="team">Team Events</button></li>
+    </ul>
+
+    <!-- Event Cards -->
+    <div class="event-grid" id="eventContainer">
+        {% for event in events %}
+        <div class="event-card" data-type="{{ event.event_type }}">
+            <div class="card">
+                <div class="card-body">
+                    <div class="title-status">
+    <h5 class="title">{{ event.title }}</h5>
+    <span class="status {{ event.status|lower }}">{{ event.status }}</span>
+</div>
+                    <p class="description">{{ event.description }}</p>
+
+                    <ul class="event-details">
+                        <li>{{ event.date }} | {{ event.time }}</li>
+                        <li>{{ event.venue }}</li>
+                        <li>₹{{ event.prize }} for Winner</li>
+                    </ul>
+
+                    <div class="progress-section">
+                        <label>Participants: {{ event.participants }}/{{ event.capacity }}</label>
+                        <div class="progress-bar">
+                            <div class="progress-fill"
+                                 style="width: {% widthratio event.participants event.capacity 100 %}%;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-row">
+                        {% if user.is_authenticated %}
+                            <a class="btn-pink" href="{% url 'join_event' event.id %}">Join Now</a>
+                        {% else %}
+                            <a class="btn-pink" href="{% url 'login' %}?next={% url 'join_event' event.id %}">Join Now</a>
+                        {% endif %}
+                        <a class="btn-outline">Rules</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/events.js' %}"></script>
+{% endblock %}
+
