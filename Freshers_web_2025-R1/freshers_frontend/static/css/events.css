@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Header */
+.heading {
+  font-size: 3rem;
+  color: #FF357F;
+  text-align: center;
+    margin-bottom: 20px;
+    font-size: 3.5rem;
+}
+
+.subtext {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  
+  padding: 6px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  list-style: none;
+  gap: 10px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  color: #007f86;
+  font-weight: 500;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab-button.active {
+  background-color: #2BB7B4;
+  color: #fff;
+}
+
+/* Event Grid */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Card */
+.event-card {
+  border: 2px solid #2BB7B4;
+  border-radius: 16px;
+  padding: 20px;
+  background: white;
+  transition: transform 0.2s;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.title-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Title text */
+.title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #222;
+  text-align: left;
+  flex: 1;
+}
+
+/* Status badge */
+.status {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  background-color: #FF357F;
+  color: white;
+  white-space: nowrap;
+}
+
+.status.live {
+  background-color: #2BB7B4;
+  color: white;
+}
+.description {
+  font-size: 0.9rem;
+  color: #444;
+  text-align: left;
+  margin: 10px 0 15px;
+}
+
+.event-details {
+  list-style: none;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.event-details li {
+  margin-bottom: 5px;
+}
+
+.event-details li::before {
+  content: "📍 ";
+  margin-right: 5px;
+}
+
+.event-details li:first-child::before {
+  content: "📅 ";
+}
+
+.event-details li:nth-child(3)::before {
+  content: "🏆 ";
+  color: #FF357F;
+}
+
+.progress-section {
+  text-align: left;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  height: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-fill {
+  background-color: #2BB7B4;
+  height: 100%;
+  transition: width 0.4s;
+}
+
+/* Buttons */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn-pink {
+  background-color: #FF357F;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  border: 1px solid #FF357F;
+  color: #FF357F;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+}
+
+/* Prize Pool */
+.prize-pool {
+  background: linear-gradient(to right, #fc466b, #3f5efb);
+  padding: 40px 20px;
+  border-radius: 16px;
+  color: white;
+  margin-top: 60px;
+}
+
+.prize-pool h1 {
+  font-size: 3rem;
+  margin: 10px 0;
+}

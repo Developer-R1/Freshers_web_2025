@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
+ 
+{% endblock %}
+
+
+{% block content %}
+
+  {% comment %} <div class="overlay"></div>
+
+<section class="hero-section container">
+  <h1 class="hero-title">Freshers</h1>
+  <h2 class="hero-sub">2025</h2>
+  
+  <p class="tagline">Where <span class="highlight-red">Stories</span> Come Alive and <span class="highlight-yellow">Dreams</span> Take Center Stage</p>
+  
+  <p class="desc">
+    Your journey into college life begins with lights, camera, action!
+  </p>
+  
+  <!-- Buttons -->
+  <div>
+    <a href="{% url 'signup' %}" class="btn btn-register">Register Now</a>
+    <a href="{% url 'about' %}" class="btn btn-learn">Learn More</a>
+  </div>
+  
+  <!-- Coming Soon -->
+  <div class="coming-soon">
+    <p>Coming Soon</p>
+    <p class="date">December 2025</p>
+  </div>
+
+  <!-- Countdown Timer -->
+  <div class="timer-box mt-5">
+    <h4><em>The Games Begin In...</em></h4>
+    <div class="d-flex justify-content-center mt-4 gap-4">
+      <div>
+        <div class="time-unit" id="days">00</div>
+        <div class="time-label">Days</div>
+      </div>
+      <div>
+        <div class="time-unit" id="hours">00</div>
+        <div class="time-label">Hours</div>
+      </div>
+      <div>
+        <div class="time-unit" id="minutes">00</div>
+        <div class="time-label">Minutes</div>
+      </div>
+      <div>
+        <div class="time-unit" id="seconds">00</div>
+        <div class="time-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Links -->
+  <div class="cta-links">
+    <a href="#">Schedule</a>
+    <a href="#">Teams</a>
+    <a href="#">Events</a>
+  </div>
+</section> {% endcomment %}
+
+<section id="hero" class="hero-section pt-5 mt-5">
+    <!-- background & shade -->
+    <div class="hero-bg"></div>
+
+    <!-- cinema screen -->
+    <div class="screen-container" aria-label="Cinema screen">
+      <video class="screen-video" autoplay muted loop playsinline>
+        <source src="{% static 'images/dummy_placeholder.mp4' %}" type="video/mp4" />
+        <!-- fallback if video unsupported -->
+        <img src="{% static 'images/cinema-hero.jpg' %}" alt="Freshers Intro" />
+      </video>
+    </div>
+
+    <!-- overlay content -->
+    <div class="container hero-content">
+      {% comment %} <p class="hero-sub mb-1">Welcome to</p>
+      <h1 class="hero-title">Freshers 2025</h1>
+      <p class="tagline">
+        Where <span class="highlight-red">Stories</span> come alive and
+        <span class="highlight-yellow">Dreams</span> take center stage.
+      </p>
+
+      <div class="d-flex justify-content-center gap-2 flex-wrap my-2">
+        <a class="btn btn-register" href="{% url 'signup' %}">Register Now</a>
+        <a class="btn btn-learn" href="{% url 'about' %}">Learn More</a>
+      </div> {% endcomment %}
+
+      <!-- Countdown -->
+      <div class="timer-box  pt-5 mt-5">
+        <h4><em>The Games Begin In...</em></h4>
+        <div class="d-flex justify-content-center gap-3 flex-wrap mt-2">
+          <div class="text-center">
+            <div class="time-unit" id="days">00</div>
+            <div class="time-label">Days</div>
+          </div>
+          <div class="text-center">
+            <div class="time-unit" id="hours">00</div>
+            <div class="time-label">Hours</div>
+          </div>
+          <div class="text-center">
+            <div class="time-unit" id="minutes">00</div>
+            <div class="time-label">Minutes</div>
+          </div>
+          <div class="text-center">
+            <div class="time-unit" id="seconds">00</div>
+            <div class="time-label">Seconds</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- quick links -->
+      <div class="cta-links">
+        <a href="{% url 'schedule' %}">Schedule</a>
+        <a href="{% url 'teams' %}">Teams</a>
+        <a href="{% url 'events' %}">Events</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+ 
+   const targetDate = new Date("Dec 20, 2025 18:00:00").getTime();
+  const ids = ["days","hours","minutes","seconds"];
+
+  function tick() {
+    const now = Date.now();
+    let diff = targetDate - now;
+
+    if (diff <= 0) {
+      ids.forEach(id => document.getElementById(id).textContent = "00");
+      return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24));
+    diff %= (1000*60*60*24);
+    const h = Math.floor(diff / (1000*60*60));
+    diff %= (1000*60*60);
+    const m = Math.floor(diff / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById("days").textContent    = String(d).padStart(2,"0");
+    document.getElementById("hours").textContent   = String(h).padStart(2,"0");
+    document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+    document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+  }
+  tick();
+  setInterval(tick, 1000);
+  </script>
+
+{% endblock %}
