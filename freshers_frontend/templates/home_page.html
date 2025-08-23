@@ -1,148 +1,119 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home Page{% endblock %}
 
 {% block extra_css %}
-
-<style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .main-title {
-      color: #ff2e9b;
-      font-weight: 700;
-      font-size: 3rem;
-    }
-    .sub-title {
-      font-size: 1.4rem;
-      margin-top: 10px;
-      font-weight: 610;
-    }
-    .description {
-      color: #666;
-      font-size: 0.95rem;
-      
-    }
-    .register-btn {
-      background-color: #ff2e9b;
-      color: white;
-      border: none;
-      font-weight: 600;
-      padding: 12px 30px;
-      margin-top: 22px;
-      border-radius: 10px;
-    }
-    .timer-box {
-      background-color:rgb(20, 186, 175);
-      color: white;
-      padding: 30px;
-      border-radius: 8px;
-      margin-top: 40px;
-      margin-left:10%;
-      margin-right: 10%;
-    }
-    .time-unit {
-      font-size: 2rem;
-      background-color: beige;
-      color: #666;
-      font-weight: bold;
-    }
-    .time-label {
-      font-size: 1rem;
-      margin-top: 5px;
-    }
-    .grid{
-     
-      background-color: white;
-      color:#ff2e9b;
-      border-width: 2px;
-      font-weight: 600;
-      padding: 12px 30px;
-      margin-top: 22px;
-      border-radius: 10px;
-      border-color: #ff2e9b;
-    }
-</style>
-
+  <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
 {% endblock %}
 
-
 {% block content %}
+<section id="hero" class="hero-section ">
+  <div class="hero-bg"></div> 
+  <div class="hero-overlay"></div> 
 
-  <h4 class="fw-bold">Welcome to NIT PY's</h4>
-  <div class="main-title ">Freshers Day 25' </div>
-  <div class="sub-title ">Survive the Games, Claim the Glory!</div>
-  <div class="description mt-2">
-    Join the ultimate battle of wits, strength, and teamwork.
-  </div>
-  <p class="description"> Only the strongest will survive!</p>
-  <button class="register-btn">Register Now</button>
-
-  <div class="timer-box mt-5">
-    <h4><em>The Games Begin In...</em></h4>
-    <div class="d-flex justify-content-center mt-4 gap-4">
-      <div>
-        <div class="time-unit" id="days">23</div>
-        <div class="time-label">Days</div>
-      </div>
-      <div>
-        <div class="time-unit" id="hours">03</div>
-        <div class="time-label">Hours</div>
-      </div>
-      <div>
-        <div class="time-unit" id="minutes">20</div>
-        <div class="time-label">Minutes</div>
-      </div>
-      <div>
-        <div class="time-unit" id="seconds">07</div>
-        <div class="time-label">Seconds</div>
+  <div class="d-flex justify-content-center">
+    <div class="timer-box mt-1">
+      <h4><em class="hero-title">The Games Begin In...</em></h4>
+      <div class="d-flex justify-content-center gap-3 flex-wrap mt-2">
+        <div class="text-center"><div class="time-unit" id="days">00</div><div class="time-label">Days</div></div>
+        <div class="text-center"><div class="time-unit" id="hours">00</div><div class="time-label">Hours</div></div>
+        <div class="text-center"><div class="time-unit" id="minutes">00</div><div class="time-label">Minutes</div></div>
+        <div class="text-center"><div class="time-unit" id="seconds">00</div><div class="time-label">Seconds</div></div>
       </div>
     </div>
   </div>
 
-  <div class="row mt-5 " style="justify-content: center;" >
-    <a href="#" id="grid" style="color:#ff2e9b;font-weight: 600;padding: 12px 30px;
-      margin-top: 22px;border-radius: 10px;" class="border border-2 border-danger text-decoration-none me-5 col-3">Schedule</a>
-    <a href="#" id="grid" style="color:#ff2e9b;font-weight: 600;padding: 12px 30px;
-      margin-top: 22px;border-radius: 10px;"class="border border-2 text-decoration-none  col-3 border-danger">Teams</a>
-    <a href="#" id="grid" style="color:#ff2e9b;font-weight: 600;padding: 12px 30px;
-      margin-top: 22px;border-radius: 10px;" class="border border-2 text-decoration-none ms-5 col-3 border-danger">Events</a>
+  <div class="cta-links">
+    <a href="{% url 'schedule' %}">Schedule</a>
+    <a href="{% url 'teams' %}">Teams</a>
+    <a href="{% url 'events' %}">Events</a>
   </div>
+</section>
 
+
+
+<section id="home-section" >
+  <hr class="section-divider mb-5">
+  <div class="container">
+   
+    <div class="row">
+      <!-- Registration form -->
+      <div class="col-md-6">
+        {% if user.is_authenticated %}
+          <div class="p-4 bg-dark text-white rounded shadow">
+            <h3 class="mb-3">You are already registered 🎉</h3>
+            <p>Your registration form is now disabled.</p>
+          </div>
+        {% else %}
+          <div class="form-container p-4 bg-dark text-white rounded shadow">
+            <div class="hero-title">
+                <h3 class="mb-4">Registration Portal</h3>
+            </div>
+            <a href="{% url 'signup' %}" class="btn btn-warning w-100">Sign Up</a>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Announcements -->
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="p-4 bg-secondary text-white rounded shadow">
+          <div class="hero-title">
+              <h3 class="mb-3">Announcements</h3>
+          </div>
+          <ul>
+            <li>🎬 Freshers 2025 registrations open now!</li>
+            <li>📅 Schedule will be released next week</li>
+            <li>🏆 Exciting games and contests await</li>
+            <li>🎤 Special guest performances lined up</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+<section id="featured-events" >
+  <hr class="section-divider mb-5">
+  <div class="container">
+    <h2 class="text-center mb-4">🎬 Featured Events</h2>
+    <div class="event-grid">
+      <!-- Example Card -->
+      <div class="event-card">
+        <div class="card neon-card">
+          <div class="card-body">
+            <h5 class="title">Spotlight Showcase</h5>
+            <p class="description">Main stage performance showcasing your talents.</p>
+            <a class="btn-pink" href="{% url 'events' %}">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Repeat more featured events -->
+    </div>
+  </div>
+</section>
 {% endblock %}
 
 {% block extra_js %}
-
 <script>
- 
-    const countDownDate = new Date().getTime() + (23 * 24 * 60 * 60 * 1000 + 3* 60 * 60 * 1000 + 20 * 60 * 1000 + 8 * 1000);
-    const daysSpan = document.getElementById("days");
-    const hoursSpan = document.getElementById("hours");
-    const minutesSpan = document.getElementById("minutes");
-    const secondsSpan = document.getElementById("seconds");
-
-    const x = setInterval(function () {
-      const now = new Date().getTime();
-      const distance = countDownDate - now;
-
-      if (distance < 0) {
-        clearInterval(x);
-        daysSpan.innerHTML = hoursSpan.innerHTML = minutesSpan.innerHTML = secondsSpan.innerHTML = "00";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      daysSpan.innerHTML = String(days).padStart(2, '0');
-      hoursSpan.innerHTML = String(hours).padStart(2, '0');
-      minutesSpan.innerHTML = String(minutes).padStart(2, '0');
-      secondsSpan.innerHTML = String(seconds).padStart(2, '0');
-    }, 1000);
-  </script>
-
+  const targetDate = new Date("Dec 20, 2025 18:00:00").getTime();
+  const ids = ["days","hours","minutes","seconds"];
+  function tick() {
+    const now = Date.now();
+    let diff = targetDate - now;
+    if (diff <= 0) { ids.forEach(id => document.getElementById(id).textContent = "00"); return; }
+    const d = Math.floor(diff / (1000*60*60*24));
+    diff %= (1000*60*60*24);
+    const h = Math.floor(diff / (1000*60*60));
+    diff %= (1000*60*60);
+    const m = Math.floor(diff / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById("days").textContent    = String(d).padStart(2,"0");
+    document.getElementById("hours").textContent   = String(h).padStart(2,"0");
+    document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+    document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
 {% endblock %}

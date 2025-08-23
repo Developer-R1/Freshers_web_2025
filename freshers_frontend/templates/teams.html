@@ -1,195 +1,198 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Our Teams {% endblock %}
+{% block title %} Our Team {% endblock %}
 
 {% block extra_css %}
 
 <style>
-    :root {
-      --primary-pink: #ff2c8a;
-      --primary-teal: #00b2b8;
-      --light-bg: #ffffff;
-      --text-dark: #000;
-    }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--light-bg);
-      color: var(--text-dark);
-    }
+  #teams-section {
+  position: relative;
+  padding: 4rem 2rem;
+  /* background: linear-gradient(135deg, #111, #222); */
+  color: #fff;
+  overflow: hidden;
+}
 
-    .navbar-brand {
-      font-weight: bold;
-      color: var(--primary-pink);
-    }
+#teams-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,0,0,0.4), rgba(0,0,0,0.6));
+  animation: shimmer 6s infinite linear;
+  z-index: 0;
+}
 
-    .nav-link {
-      font-weight: 500;
-      color: var(--text-dark) !important;
-    }
+#teams-section .container, 
+#teams-section .text-center {
+  position: relative;
+  z-index: 2;
+}
 
-    .btn-pink {
-      background-color: var(--primary-pink);
-      color: #fff;
-      border: none;
-    }
+/* Title */
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #ffcc00;
+  text-shadow: 0 0 8px #ff3c2e, 0 0 16px #ff3c2e;
+}
 
-    .btn-pink:hover {
-      background-color: #e6257a;
-    }
+.tagline {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
 
-    .stats-box {
-      border: 1.5px solid var(--primary-teal);
-      border-radius: 10px;
-      padding: 1.2rem;
-      color: var(--primary-teal);
-      background-color: #f8f9fa;
-    }
+/* Stats */
+.stats-box {
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-weight: bold;
+  background: #111;
+  border: 2px solid #00eaff;
+  box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+}
 
-    .stats-box i {
-      font-size: 1.5rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
+.stats-box i {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
 
-    .team-tabs .nav-link.active {
-      background-color: var(--primary-teal);
-      color: white;
-      border-radius: 10px;
-    }
+/* Tabs */
+.team-tabs .nav-link {
+  background: transparent;
+  border: 2px solid #ff3c2e;
+  color: #fff;
+  margin: 0 8px;
+  border-radius: 10px;
+  padding: 8px 16px;
+  transition: 0.3s;
+}
 
-    .team-tabs .nav-link {
-      color: var(--text-dark);
-    }
+.team-tabs .nav-link.active {
+  background: #ff3c2e;
+  color: #fff;
+  box-shadow: 0 0 10px #ff3c2e;
+}
 
-    .team-card {
-      border: 1px solid var(--primary-teal);
-      border-radius: 12px;
-      padding: 1.2rem;
-      margin-bottom: 1rem;
-    }
+/* Team Cards */
+.team-card {
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(20,20,20,0.95);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .highlight-badge {
-      background-color: var(--primary-teal);
-      color: white;
-      padding: 0.25rem 0.6rem;
-      font-size: 0.75rem;
-      border-radius: 5px;
-    }
-  </style>
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px #ff3c2e, 0 0 30px #ffcc00;
+}
 
+/* Fix: Image clarity  */
+ .team-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ffcc00;
+  box-shadow: 0 0 10px #ff3c2e;
+  background: #111;
+  padding: 4px;
+}
+
+/* Fix: Title visibility */
+.card-title {
+  color: #ffcc00 !important;
+  font-weight: 700;
+  text-shadow: 0 0 5px #000;
+}
+
+/* Fix: Role visibility */
+.card-body p {
+  color: #ccc !important;
+  font-size: 0.9rem;
+}
+
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .team-title {
+    font-size: 1.4rem;
+  }
+  .stats-box {
+    margin-bottom: 1rem;
+  }
+}
+</style>
 
 {% endblock %}
 
 {% block content %}
 
-<div class="text-center mt-4">
-  <h1 class="fw-bold" style="color: var(--primary-pink);">Our Team</h1>
-</div>
+<section id="teams-section">
+  <div class="overlay"></div>
 
-<!-- Stats -->
-<div class="container mt-4">
-  <div class="row text-center g-4">
-    <div class="col-md-3"><div class="stats-box"><i class="bi bi-people-fill"></i><h5>{{ total_members }}</h5><p>Total Members</p></div></div>
-    <div class="col-md-3"><div class="stats-box"><i class="bi bi-lightbulb"></i><h5>{{ total_departments }}</h5><p>Departments</p></div></div>
-    <div class="col-md-3"><div class="stats-box"><i class="bi bi-cup-hot"></i><h5>100+</h5><p>Coffee Consumed</p></div></div>
-    <div class="col-md-3"><div class="stats-box"><i class="bi bi-clock"></i><h5>96+</h5><p>Hours Coded</p></div></div>
+  <!-- Title -->
+  <div class="text-center mt-5">
+    <h1 class="hero-title">👥 Our Team</h1>
+    <p class="tagline"><span class="highlight-red">Meet the Minds</span> ✨ <span class="highlight-yellow">Behind the Magic</span></p>
   </div>
-</div>
 
-<!-- Team Tabs -->
-<div class="container mt-5">
-  <ul class="nav nav-pills justify-content-center team-tabs mb-3" role="tablist">
-    {% for category in teams_by_category.keys %}
-      <li class="nav-item">
-        <button class="nav-link {% if forloop.first %}active{% endif %}" data-bs-toggle="pill" data-bs-target="#{{ category|slugify }}">{{ category|capfirst }}</button>
-      </li>
-    {% endfor %}
-  </ul>
+  
+  <!-- Tabs -->
+  <div class="container mt-5">
+    <ul class="nav nav-pills justify-content-center team-tabs mb-4" role="tablist">
+      {% for category in teams_by_category.keys %}
+        <li class="nav-item">
+          <button class="nav-link {% if forloop.first %}active{% endif %}" data-bs-toggle="pill" data-bs-target="#{{ category|slugify }}">
+            {{ category|capfirst }}
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
 
-  <div class="tab-content">
-    {% for category, members in teams_by_category.items %}
-    <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ category|slugify }}">
-      <div class="text-center mb-3">
-        <h5 class="fw-semibold" style="color: var(--primary-teal);">{{ category|capfirst }} Team</h5>
-      </div>
-      <div class="row justify-content-center">
-        {% for member in members %}
-        <div class="col-md-3 mb-4">
-          <div class="card h-100 text-center border-0 shadow-sm">
-            <img src="{{ member.photo.url }}" class="card-img-top rounded-circle p-3" alt="{{ member.name }}">
-            <div class="card-body">
-              <h5 class="card-title mb-1">{{ member.name }}</h5>
-              <p class="text-muted small">{{ member.role }}</p>
-              {% if member.linkedin %}
-              <a href="{{ member.linkedin }}" target="_blank" class="text-decoration-none">
-                <i class="bi bi-linkedin fs-4"></i>
-              </a>
-              {% endif %}
-            </div>
-          </div>
+    <!-- Members by category -->
+    <div class="tab-content">
+      {% for category, members in teams_by_category.items %}
+      <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ category|slugify }}">
+        <div class="text-center mb-4">
+          <h3 class="team-title">{{ category|capfirst }} Team</h3>
         </div>
-        {% endfor %}
+
+        
+        <div class="row justify-content-center g-4">
+          {% for member in members %}
+              <div class="col-md-3 col-sm-6">
+                <div class="team-card text-center h-100">
+                  {% if member.head_photo %}
+                <img src="{{ member.head_photo.url }}" class="team-avatar mx-auto d-block" alt="{{ member.head_name }}">
+                {% else %}
+                <img src="{% static 'images/placeholder-avatar.png' %}" class="team-avatar mx-auto d-block" alt="No photo">
+                {% endif %}
+                  <div class="team-meta">
+                    <h5 class="member-name">{{ member.head_name }}</h5>
+                    <p class="member-role">{{ member.head_designation }}</p>
+                    {% if member.head_linkedin %}
+                    <a href="{{ member.head_linkedin }}" target="_blank" class="linkedin-icon" aria-label="LinkedIn">
+                      <i class="bi bi-linkedin"></i>
+                    </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+        </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-</div>
-
-
-{% endblock %}
-
-{% block extra_js %}
-
-<script>
-// Assume `teamsContext` is passed from Django using a safe script tag
-// Example: <script>const teamsContext = {{ teams_json|safe }};
-const teamsContext = JSON.parse('{{ teams_json|escapejs }}');
-
-function createTeamCard(member) {
-  return `
-    <div class="team-card text-center">
-      <img src="${member.image_url}" alt="${member.name}" class="img-fluid rounded-circle mb-2" style="width:100px; height:100px; object-fit:cover;">
-      <h6 class="mt-2 mb-0">${member.name}</h6>
-      <span class="highlight-badge">${member.role}</span><br>
-      <small>${member.department} - ${member.year}</small><br>
-      <small>${member.skills}</small>
-      <p class="mt-2">${member.bio}</p>
-      ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" class="btn btn-sm btn-pink"><i class="bi bi-linkedin"></i> LinkedIn</a>` : ''}
-    </div>
-  `;
-}
-
-function renderDynamicTeams(data) {
-  for (const dept in data) {
-    const container = document.getElementById(`${dept}-team`);
-    if (!container) continue;
-
-    container.innerHTML = data[dept]
-      .map(member => createTeamCard(member))
-      .join('');
-  }
-}
-
-// Sample fallback data for dev only (remove this block in production)
-const fallback = {
-  dev: [
-    {
-      name: "Akash",
-      role: "Full Stack Developer",
-      department: "CSE",
-      year: "2nd year",
-      skills: "React, Django",
-      image_url: "/static/images/teams_head/akash.jpg",
-      linkedin: "https://linkedin.com/in/akash-dev",
-      bio: "Passionate full stack developer."
-    }
-  ]
-};
-
-// Use `teamsContext` if available, else fallback
-renderDynamicTeams(typeof teamsContext !== 'undefined' ? teamsContext : fallback);
-</script>
+</section>
 
 {% endblock %}

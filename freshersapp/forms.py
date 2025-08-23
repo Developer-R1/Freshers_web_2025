@@ -11,12 +11,12 @@ class CustomUserCreationForm(UserCreationForm):
         required=True,
         widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-group'}),
     )
-    first_name = forms.CharField(  # ✅ lowercase!
+    first_name = forms.CharField( 
         max_length=150,
         required=True,
         widget=forms.TextInput(attrs={'placeholder': 'First Name', 'class': 'form-group'}),
     )
-    last_name = forms.CharField(  # ✅ lowercase!
+    last_name = forms.CharField(  
         max_length=150,
         required=True,
         widget=forms.TextInput(attrs={'placeholder': 'Last Name', 'class': 'form-group'}),

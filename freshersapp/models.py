@@ -37,6 +37,10 @@ class Team(models.Model):
     head_photo = models.ImageField(upload_to='team_heads/')
     head_linkedin = models.URLField(blank=True, null=True)
     head_designation = models.CharField(max_length=100, blank=True)
+    category = models.CharField(max_length=100, default="general")
+
+    def __str__(self):
+        return f"{self.team_name} - {self.head_name}"
 
 class Web_team(models.Model):
     name = models.CharField(max_length=100)

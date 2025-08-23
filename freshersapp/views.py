@@ -8,6 +8,7 @@ from .models import Event, UserProfile,Team,Web_team
 from .forms import CustomUserCreationForm
 import json
 from django.contrib.auth import logout
+from .utils import send_otp
 
 
 def home(request):
@@ -22,21 +23,50 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.first_name = form.cleaned_data.get('first_name')
-            user.last_name = form.cleaned_data.get('last_name')
-            user.email = form.cleaned_data.get('email')
-            user.save()
+            # Temporarily store form data in session
+            request.session['signup_data'] = form.cleaned_data  
 
-            department = form.cleaned_data.get('department')
-            UserProfile.objects.create(user=user, department=department)
+            # Send OTP
+            email = form.cleaned_data.get('email')
+            otp = send_otp(email)
+            request.session['signup_otp'] = otp  # store OTP in session
 
-            login(request, user) 
-            return redirect('events') 
+            return redirect('verify_otp')  # go to OTP verification page
     else:
         form = CustomUserCreationForm()
-    
+
     return render(request, 'sign_up.html', {'form': form})
+
+
+def verify_otp(request):
+    if request.method == "POST":
+        entered_otp = request.POST.get("otp")
+        session_otp = request.session.get("signup_otp")
+        data = request.session.get("signup_data")
+
+        if entered_otp == session_otp:
+            # ✅ OTP matched → create user
+            from django.contrib.auth.models import User
+            user = User.objects.create_user(
+                username=data['username'],
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                email=data['email'],
+                password=data['password1'],
+            )
+            UserProfile.objects.create(user=user, department=data['department'])
+            
+            # clear session data
+            del request.session['signup_data']
+            del request.session['signup_otp']
+
+            login(request, user)
+            messages.success(request, "Account created successfully 🎉")
+            return redirect('events')
+        else:
+            messages.error(request, "Invalid OTP. Please try again.")
+
+    return render(request, 'verify_otp.html')
 
 @login_required
 def join_event(request, event_id):
@@ -57,7 +87,7 @@ def join_event(request, event_id):
         return redirect('events')
 
     profile.joined_events.add(event)
-    event.participants += 1
+    event.participants = profile.joined_events.count()
     event.save()
     profile.save()
     messages.success(request, "Successfully joined the event!")
@@ -99,9 +129,11 @@ def logout_view(request):
 def teams_view(request):
     teams = Team.objects.all()
     teams_by_category = {}
+    
 
     for member in teams:
-        category = member.category.lower()
+        category = member.event.title
+      
         if category not in teams_by_category:
             teams_by_category[category] = []
         teams_by_category[category].append(member)

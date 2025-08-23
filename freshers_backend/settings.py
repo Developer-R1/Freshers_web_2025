@@ -115,3 +115,35 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [BASE_DIR / "freshers_frontend" / "static"]
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"   # ✅ corrected spelling
+EMAIL_PORT = 587                # TLS port
+EMAIL_USE_TLS = True            # ✅ enable TLS
+EMAIL_HOST_USER = "aaronmity2006@gmail.com"   # replace with your Gmail
+EMAIL_HOST_PASSWORD = "ulkb uuhh qxxt vuuz"  # your App Password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# EMAIL_ACCOUNTS = [
+#     {
+#         "EMAIL_HOST": "smtp.gmail.com",
+#         "EMAIL_PORT": 587,
+#         "EMAIL_HOST_USER": "account1@gmail.com",
+#         "EMAIL_HOST_PASSWORD": "xxxx xxxx xxxx xxxx", 
+#     },
+#     {
+#         "EMAIL_HOST": "smtp.gmail.com",
+#         "EMAIL_PORT": 587,
+#         "EMAIL_HOST_USER": "account2@gmail.com",
+#         "EMAIL_HOST_PASSWORD": "yyyy yyyy yyyy yyyy",
+#     },
+#     {
+#         "EMAIL_HOST": "smtp.gmail.com",
+#         "EMAIL_PORT": 587,
+#         "EMAIL_HOST_USER": "account3@gmail.com",
+#         "EMAIL_HOST_PASSWORD": "zzzz zzzz zzzz zzzz",
+#     },
+ 
+# ]

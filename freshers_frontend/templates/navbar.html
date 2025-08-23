@@ -1,37 +1,40 @@
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid ">
-      <a class="navbar-brand text-danger lead fw-bold" href="#">Freshers25'</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Nav"
-        aria-controls="Nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="Nav">
-        <ul class="navbar-nav ms-auto">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow custom-navbar">
+  <div class="container-fluid" >
+    <a class="navbar-brand text-danger fw-bold" href="#">Freshers25'</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Nav"
+      aria-controls="Nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="alignmenter">
+
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="Nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-warning" href="{% url 'home' %}">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-warning" href="{% url 'events' %}">EVENTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-warning" href="{% url 'schedule' %}">SCHEDULES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-warning" href="{% url 'teams' %}">TEAMS</a>
+        </li>
+        {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active fw-bold text-success" aria-current="page" href="{% url 'home' %}">HOME</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link fw-bold text-success" href="{% url 'events' %}">EVENTS</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link fw-bold text-success" href="{% url 'schedule' %}">SCHEDULES</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link text-success fw-bold" href="{% url 'teams' %}">TEAMS</a>
-          </li>
-         {% if user.is_authenticated %}
-       
-          <li class="nav-item">
-            <a class="nav-link bg-secondary text-light fw-bold" href="{% url 'logout' %}">LOGOUT</a>
+            <a class="nav-link fw-bold text-light bg-secondary px-3 rounded" href="{% url 'logout' %}">LOGOUT</a>
           </li>
         {% else %}
-   
           <li class="nav-item">
-            <a class="nav-link bg-danger fw-bold text-light" href="{% url 'signup' %}">SIGN UP</a>
+            <a class="nav-link fw-bold text-light bg-danger px-3 rounded" href="{% url 'signup' %}">SIGN UP</a>
           </li>
         {% endif %}
-        </ul>
-      </div>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
