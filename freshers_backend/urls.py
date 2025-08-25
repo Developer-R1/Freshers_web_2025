@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from freshersapp.views import events,join_event,signup,home,login_view,teams_view,schedule,logout_view,verify_otp
+from freshersapp.views import events,join_event,signup,home,login_view,teams_view,schedule,logout_view,verify_otp,login_verify_otp
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -10,6 +10,7 @@ urlpatterns = [
     path('',home,name='home'),
     path('signup/',signup,name='signup'),
     path('login/',login_view,name='login'),
+    path("login/verify-otp/",login_verify_otp, name="login_verify_otp"),
     path('logout/', logout_view, name='logout'),
     path('schedule/',schedule,name='schedule'),
     path('events/',events,name='events'),

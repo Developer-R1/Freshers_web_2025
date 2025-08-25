@@ -107,20 +107,50 @@ def join_event(request, event_id):
     return redirect('events')
 
 def login_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)
-            return redirect('events')  
+            # Send OTP
+            otp = send_otp(user.email)
+            request.session["login_user_id"] = user.id
+            request.session["login_otp"] = otp
+            messages.info(request, "OTP sent to your email. Enter it below.")
+
+            return redirect("login_verify_otp")
         else:
             messages.error(request, "Invalid username or password.")
 
-    return render(request, 'login.html')
+    return render(request, "login.html")
 
+
+def login_verify_otp(request):
+    if request.method == "POST":
+        entered_otp = request.POST.get("otp")
+        session_otp = request.session.get("login_otp")
+        user_id = request.session.get("login_user_id")
+
+        if entered_otp == session_otp and user_id:
+            from django.contrib.auth.models import User
+            user = User.objects.get(id=user_id)
+
+            login(request, user)
+
+            # Clear session
+            request.session.pop("login_user_id", None)
+            request.session.pop("login_otp", None)
+
+            messages.success(request, "Login successful 🎉")
+            return redirect("events")
+        else:
+            messages.error(request, "Invalid OTP. Please try again.")
+
+    return render(request, "login_verify_otp.html")
+
+    
 def logout_view(request):
     if request.user.is_authenticated:
         logout(request)

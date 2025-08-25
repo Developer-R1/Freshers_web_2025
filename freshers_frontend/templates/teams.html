@@ -10,7 +10,7 @@
   #teams-section {
   position: relative;
   padding: 4rem 2rem;
-  /* background: linear-gradient(135deg, #111, #222); */
+  background: linear-gradient(135deg, #111, #222);
   color: #fff;
   overflow: hidden;
 }
@@ -87,12 +87,11 @@
   box-shadow: 0 0 20px #ff3c2e, 0 0 30px #ffcc00;
 }
 
-/* Fix: Image clarity  */
  .team-card img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
+  width: 180px;   /* ⬅️ increased size from 160px to 180px */
+  height: 180px;  /* ⬅️ increased size from 160px to 180px */
+  object-fit: contain;  /* ⬅️ changed from cover → contain to show full image */
+  /* border-radius: 50%; */
   border: 3px solid #ffcc00;
   box-shadow: 0 0 10px #ff3c2e;
   background: #111;

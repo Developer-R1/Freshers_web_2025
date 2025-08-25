@@ -16,7 +16,7 @@
  
     {% include 'navbar.html' %}
 
-    <div class="container mt-3">
+    <div class="container">
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">{{ message }}</div>
