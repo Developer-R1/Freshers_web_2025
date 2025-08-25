@@ -39,6 +39,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+]
+
 ROOT_URLCONF = 'freshers_backend.urls'
 
 TEMPLATES = [
@@ -115,3 +120,81 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [BASE_DIR / "freshers_frontend" / "static"]
+
+
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.gmail.com"  
+# EMAIL_PORT = 587                
+# EMAIL_USE_TLS = True         
+# EMAIL_HOST_USER = "aaronmity2006@gmail.com"   
+# EMAIL_HOST_PASSWORD = "ulkb uuhh qxxt vuuz" 
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+AUTH_USER_MODEL = "freshersapp.CustomUser"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = "aaronmity2006@gmail.com"
+
+EMAIL_ACCOUNTS = [
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "aaronmity2006@gmail.com",
+        "EMAIL_HOST_PASSWORD": "ulkb uuhh qxxt vuuz", 
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "astrodim006@gmail.com",
+        "EMAIL_HOST_PASSWORD": "dmnp hudq jtnt moro",
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "freshers20iiv@gmail.com",
+        "EMAIL_HOST_PASSWORD": "tpqw jtlc ksge udwv",
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "freshnit2k25@gmail.com",
+        "EMAIL_HOST_PASSWORD": "jngp zwgn wrlt yika",
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "freshersnitpyk@gmail.com",
+        "EMAIL_HOST_PASSWORD": "cbvz xnlc cndt yrzl ",
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "freshers2knitpy@gmail.com",
+        "EMAIL_HOST_PASSWORD": "ucta hukc shhl hepg",
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "freshers1styear@gmail.com",
+        "EMAIL_HOST_PASSWORD": "gnnw ypup xbal oyiv",
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "freshersjuniors2k25@gmail.com",
+        "EMAIL_HOST_PASSWORD": "esuw olee qvgg pnpv",
+    },
+ 
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "jnrfreshers2k25@gmail.com",
+        "EMAIL_HOST_PASSWORD": "cjal mghh akse ecfc",
+    },
+    {
+        "EMAIL_HOST": "smtp.gmail.com",
+        "EMAIL_PORT": 587,
+        "EMAIL_HOST_USER": "qubidim707@gmail.com",
+        "EMAIL_HOST_PASSWORD": "eiqr bfav tymq qjyr",
+    },
+]

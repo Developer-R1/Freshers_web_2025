@@ -1,7 +1,5 @@
-// static/js/events.js
-
 document.addEventListener("DOMContentLoaded", () => {
-    const tabs = document.querySelectorAll('#eventTabs .nav-link');
+    const tabs = document.querySelectorAll('#eventTabs .tab-button'); // CHANGED
     const cards = document.querySelectorAll('.event-card');
 
     tabs.forEach(tab => {

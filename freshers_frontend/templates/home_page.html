@@ -1,102 +1,159 @@
-
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home Page{% endblock %}
 
 {% block extra_css %}
-
+    <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
 {% endblock %}
 
-
-{% load static %}
-  
-
 {% block content %}
-<div class="home-con">
-  <h4 style="color: rgba(30, 30, 30, 0.82);
-font-size: 2rem;
-font-style: normal;
-font-weight: 500;
-line-height: normal;">Welcome to NIT PY's</h4>
-  <link rel="stylesheet" href="{% static 'css/Homepage.css' %}">
-  
-  <h1 class="main-title">Freshers Day<span class="year-suffix">25'</span></h1>
+<main>
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Welcome to Our Event!</h1>
+            <p class="tagline">
+                Join us for an <span class="highlight-red">unforgettable experience</span> of
+                <span class="highlight-yellow">freshers' games</span>, music, and more.
+            </p>
+            <div class="timer-box">
+                <h4>The Games Begin In...</h4>
+                <div class="timer-grid">
+                    <div class="text-center">
+                        <div class="time-unit" id="days">00</div>
+                        <div class="time-label">Days</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="time-unit" id="hours">00</div>
+                        <div class="time-label">Hours</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="time-unit" id="minutes">00</div>
+                        <div class="time-label">Minutes</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="time-unit" id="seconds">00</div>
+                        <div class="time-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-links">
+                <a href="{% url 'schedule' %}" class="btn btn-secondary">Schedule</a>
+                <a href="{% url 'teams' %}" class="btn btn-secondary">Teams</a>
+                <a href="{% url 'events' %}" class="btn btn-secondary">Events</a>
+            </div>
+        </div>
+    </section>
 
-  <h2 class="sub-title">Survive the Games, Claim the Glory!</h2>
-  
-  <p class="description">
-    Join the ultimate battle of wits, strength, and teamwork. Only the strongest will survive!
-  </p>
-  
-  <button class="register-btn">Register Now</button>
+    <div class="section-divider"></div>
+    <section id="featured-events" class="content-section">
+    <div class="container">
+        <h2 class="text-center mb-4">🎬 Featured Events</h2>
+        
+        <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="event-card">
+                        <div class="card-body">
+                            <h5 class="title">Spotlight Showcase</h5>
+                            <p class="description">Main stage performance showcasing your talents.</p>
+                            <a class="btn-pink" href="{% url 'events' %}">Learn More</a>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="timer-box">
-    <h3 class="timer-title"><em>The Games Begin In...</em></h3>
-    <div class="d-flex justify-content-center mt-4 gap-3 gap-md-4">
-      <div>
-        <div class="time-unit" id="days">05</div>
-        <div class="time-label">Days</div>
-      </div>
-      <div>
-        <div class="time-unit" id="hours">23</div>
-        <div class="time-label">Hours</div>
-      </div>
-      <div>
-        <div class="time-unit" id="minutes">09</div>
-        <div class="time-label">Minutes</div>
-      </div>
-      <div>
-        <div class="time-unit" id="seconds">05</div>
-        <div class="time-label">Seconds</div>
-      </div>
+                <div class="carousel-item">
+                    <div class="event-card">
+                        <div class="card-body">
+                            <h5 class="title">Gaming Tournament</h5>
+                            <p class="description">Compete against the best to claim victory and prizes.</p>
+                            <a class="btn-pink" href="{% url 'events' %}">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="event-card">
+                        <div class="card-body">
+                            <h5 class="title">Live Music Night</h5>
+                            <p class="description">An evening of electrifying music from local artists.</p>
+                            <a class="btn-pink" href="{% url 'events' %}">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
-  </div>
+</section>
+    <section class="content-section" id="home-section">
+        <div class="container">
+            <div class="row d-flex flex-wrap">
+                <div class="col-md-6 mb-4">
+                    {% if user.is_authenticated %}
+                        <div class="card bg-dark text-white">
+                            <h3 class="mb-3">You are already registered 🎉</h3>
+                            <p>Your registration form is now disabled.</p>
+                        </div>
+                    {% else %}
+                        <div class="card bg-dark text-white">
+                            <h3 class="mb-4">Registration Portal</h3>
+                            <p>Sign up to join the event.</p>
+                            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+                        </div>
+                    {% endif %}
+                </div>
 
-  <div class="actions-container">
-    <a href="{% url 'schedule' %}" class="outline-btn">Schedule</a>
-    <a href="{% url 'teams' %}" class="outline-btn">Teams</a>
-    <a href="{% url 'events' %}" class="outline-btn">Events</a>
-  </div>
-</div>
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white">
+                        <h3 class="mb-3">Announcements</h3>
+                        <ul class="list-unstyled">
+                            <li>🎬 Freshers 2025 registrations open now!</li>
+                          
+                            <li>🏆 Exciting games and contests await</li>
+                            <li>🎤 Special guest performances lined up</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <div class="section-divider"></div>
+
+    
+</main>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    // Set a specific future date for a real countdown.
-    // Example: July 31, 2025 at midnight.
-    const countDownDate = new Date("Jul 31, 2025 23:59:59").getTime();
-
-    const daysSpan = document.getElementById("days");
-    const hoursSpan = document.getElementById("hours");
-    const minutesSpan = document.getElementById("minutes");
-    const secondsSpan = document.getElementById("seconds");
-
-    const x = setInterval(function () {
-      const now = new Date().getTime();
-      const distance = countDownDate - now;
-
-      // If the countdown is over, display text
-      if (distance < 0) {
-        clearInterval(x);
-        document.querySelector(".timer-title").innerHTML = "The Games Have Begun!";
-        daysSpan.innerHTML = "00";
-        hoursSpan.innerHTML = "00";
-        minutesSpan.innerHTML = "00";
-        secondsSpan.innerHTML = "00";
-        return;
-      }
-
-      // Time calculations
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      // Update the HTML elements, adding a "0" if the number is less than 10
-      daysSpan.innerHTML = String(days).padStart(2, '0');
-      hoursSpan.innerHTML = String(hours).padStart(2, '0');
-      minutesSpan.innerHTML = String(minutes).padStart(2, '0');
-      secondsSpan.innerHTML = String(seconds).padStart(2, '0');
-    }, 1000);
+    const targetDate = new Date("Dec 20, 2025 18:00:00").getTime();
+    const ids = ["days","hours","minutes","seconds"];
+    function tick() {
+        const now = Date.now();
+        let diff = targetDate - now;
+        if (diff <= 0) { ids.forEach(id => document.getElementById(id).textContent = "00"); return; }
+        const d = Math.floor(diff / (1000*60*60*24));
+        diff %= (1000*60*60*24);
+        const h = Math.floor(diff / (1000*60*60));
+        diff %= (1000*60*60);
+        const m = Math.floor(diff / (1000*60));
+        const s = Math.floor((diff % (1000*60)) / 1000);
+        document.getElementById("days").textContent = String(d).padStart(2,"0");
+        document.getElementById("hours").textContent = String(h).padStart(2,"0");
+        document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+        document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
 </script>
-{% endblock %}
+{% endblock %}  

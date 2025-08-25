@@ -1,0 +1,347 @@
+/*
+    ====================
+    1. Global Styles & Variables
+    ====================
+*/
+:root {
+    --color-primary-gold: #ffdf00;
+    --color-secondary-red: #ff0055;
+    --color-dark-bg: #1a1a1a;
+    --color-text-light: #fff;
+    --color-text-muted: #ccc;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--color-dark-bg);
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.text-center { text-align: center; }
+
+/*
+    ====================
+    2. Hero Section
+    ====================
+*/
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding-top: 60px; /* Add space for navbar */
+    
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url("/static/images/bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.75);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--spacing-lg) 0;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    color: var(--color-primary-gold);
+    text-shadow: 0 0 10px var(--color-primary-gold), 0 0 20px rgba(255, 223, 0, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: var(--color-text-muted);
+}
+
+.highlight-red { color: var(--color-secondary-red); }
+.highlight-yellow { color: var(--color-primary-gold); }
+
+/*
+    ====================
+    3. Timer
+    ====================
+*/
+/* The timer code remains unchanged per your request. */
+.timer-box {
+    background: rgba(30, 30, 30, 0.85);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+}
+
+.timer-box h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #ffcc00;
+    margin: 0 0 1rem;
+}
+
+.timer-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.time-unit {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    background: #000;
+    color: #ff3c2e;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 60, 46, 0.8);
+    transition: transform 0.3s ease;
+}
+
+.time-unit:hover {
+    transform: scale(1.05);
+}
+
+.time-label {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 0.5rem;
+}
+
+/*
+    ====================
+    4. CTA Buttons
+    ====================
+*/
+.cta-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--color-primary-gold);
+    color: var(--color-primary-gold);
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: var(--color-primary-gold);
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 223, 0, 0.5);
+}
+
+/*
+    ====================
+    Content Sections
+    ====================
+*/
+.content-section {
+    padding: var(--spacing-lg) 0;
+}
+
+/* Updated Card Styling: 
+    - Ensures equal height for both the registration and announcement cards.
+    - Uses Flexbox to align content consistently.
+*/
+.card {
+    background: var(--color-dark-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    border-left: 4px solid var(--color-primary-gold);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; /* Ensures the card fills the full height of its container */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns content to the top */
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(255, 223, 0, 0.3);
+}
+
+.card-title {
+    color: var(--color-primary-gold);
+    text-shadow: 0 0 8px rgba(255, 223, 0, 0.5);
+}
+
+.card-text, .list-unstyled li {
+    color: var(--color-text-muted);
+}
+
+.btn-primary {
+    background: var(--color-secondary-red);
+    color: var(--color-text-light);
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background: #e0004c;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
+}
+/* Featured Events */
+.event-grid {
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.event-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: var(--color-dark-bg);
+    border-left: 4px solid var(--color-primary-gold);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(255, 223, 0, 0.3);
+}
+
+.event-card .title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-primary-gold);
+    text-shadow: 0 0 8px rgba(255, 223, 0, 0.5);
+}
+
+.event-card .description {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+.event-card .btn-pink {
+    background: var(--color-secondary-red);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.event-card .btn-pink:hover {
+    opacity: 0.8;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
+}
+
+/*
+    ====================
+    6. Responsive
+    ====================
+*/
+@media (max-width: 768px) {
+    .hero-content {
+        padding: var(--spacing-md) 0;
+    }
+    .timer-grid {
+        gap: 1rem;
+    }
+    .time-unit {
+        font-size: 2rem;
+        padding: 0.4rem 0.8rem;
+    }
+    .card:not(:last-child) {
+        margin-bottom: var(--spacing-md);
+    }
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/*
+    ====================
+    Carousel Styles
+    ====================
+*/
+
+.carousel-inner {
+    padding: 0 4rem; /* Add padding to make space for controls */
+}
+
+.carousel-item {
+    padding: 1rem;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+/* Ensure card responsiveness within the carousel */
+@media (max-width: 768px) {
+    .carousel-inner {
+        padding: 0;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        top: 40%;
+        width: 2rem;
+        height: 2rem;
+    }
+}
