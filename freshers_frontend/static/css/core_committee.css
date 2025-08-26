@@ -1,0 +1,146 @@
+/*
+    ====================
+    Global Variables
+    ====================
+*/
+:root {
+    --color-primary-gold: #ffdf00;
+    --color-secondary-red: #ff0055;
+    --color-dark-bg: #1a1a1a;
+    --color-text-light: #fff;
+    --color-text-muted: #ccc;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--color-dark-bg);
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+/*
+    ====================
+    Header and Back Button
+    ====================
+*/
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary-gold);
+    text-shadow: 0 0 8px var(--color-primary-gold);
+    text-align: left;
+    margin: 0;
+}
+
+.back-home-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: var(--color-secondary-red);
+    color: var(--color-text-light);
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-secondary-red);
+}
+
+.back-home-btn:hover {
+    background-color: transparent;
+    color: var(--color-secondary-red);
+    box-shadow: 0 0 15px var(--color-secondary-red);
+}
+
+/*
+    ====================
+    Members Grid
+    ====================
+*/
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.member-card {
+    background: #252525;
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-primary-gold);
+    box-shadow: 0 0 10px var(--color-primary-gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.member-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary-gold);
+    margin: 0.5rem 0 0;
+}
+
+.member-role {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    font-weight: 600;
+    margin: 0;
+}
+
+.member-contact {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+}
+
+/*
+    ====================
+    Responsive Styles
+    ====================
+*/
+@media (max-width: 600px) {
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .page-title {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .back-home-btn {
+        width: 100%;
+    }
+}

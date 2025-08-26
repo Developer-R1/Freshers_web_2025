@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/core_committee.css' %}">
+<div class="container">
+    <div class="header-section">
+        <h1 class="page-title">Core Committee Members</h1>
+        <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
+    </div>
+
+    <div class="members-grid">
+        <div class="member-card">
+            <img src="{% static 'images/member1.jpg' %}" alt="Member 1" class="member-photo">
+            <div class="member-info">
+                <h2 class="member-name">John Doe</h2>
+                <p class="member-role">President</p>
+                <p class="member-contact">john.doe@example.com</p>
+            </div>
+        </div>
+        
+        <div class="member-card">
+            <img src="{% static 'images/member2.jpg' %}" alt="Member 2" class="member-photo">
+            <div class="member-info">
+                <h2 class="member-name">Jane Smith</h2>
+                <p class="member-role">Vice President</p>
+                <p class="member-contact">jane.smith@example.com</p>
+            </div>
+        </div>
+
+        </div>
+</div>

@@ -1,0 +1,43 @@
+{% load static %}
+<link rel="stylesheet" href='{% static "css/profile.css" %}'>
+<div class="container">
+    <div class="profile-header row">
+        <div class="col-md-4">
+            <img src="../static/images/Nodp.jpg" alt="Profile Picture" class="profile-pic img-fluid">
+        </div>
+        <div class="col-md-8">
+            <div class="profile-info">
+                <p>Name: {{ user.name }}</p>
+                <p>Roll No: {{ user.roll_no }}</p>
+                <p>Year: {{ user.year }}</p>
+                <p>Department: {{ user.department }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Phone: {{ user.phone_number }}</p>
+                <p>WhatsApp: {{ user.whatsapp_number }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        <a href="{% url 'logout' %}" class="btn-profile logout-btn">Sign Out</a>
+        <a href="{% url 'home' %}" class="btn-profile home-btn">Back to Home</a>
+    </div>
+
+    <h3>Joined Events</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Title</th>
+                <th>Event Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registration in events %}
+                <tr>
+                    <td>{{ registration.event.title }}</td>
+                    <td>{{ registration.event.date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

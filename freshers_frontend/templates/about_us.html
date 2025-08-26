@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}About Us{% endblock %}
+
+{% block extra_css %}
+
+<style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+</style>
+
+{% endblock %}
+
+{% block body_attr %}class="shadow"{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+  <div class="card p-4">
+    <h2 class="text-center title mb-4" style="color: #00796b;font-weight: 700;">About Freshers Day</h2>
+    <p class="text-center">
+      Welcome to <strong style="color:#00796b;">NIT PY's Freshers Day</strong> - the most awaited event of the year!
+      This is where new beginnings meet endless possibilities, and the journey of camaraderie, creativity, and fun begins.
+      Freshers Day is a celebration of new friendships, unforgettable memories, and the spirit of togetherness as we welcome
+      the newest members of our NIT PY family.
+    </p>
+    <p class="text-center">
+      From thrilling games and exciting competitions to cultural performances and interactive sessions, this day is packed with
+      activities designed to bring out the best in everyone. It's a time to showcase your talents, connect with peers, and create
+      memories that will last a lifetime.
+    </p>
+    <p class="text-center">
+      Whether you're a participant or a spectator, Freshers Day promises an experience like no other. So, gear up to dive into the excitement,
+      embrace the challenges, and celebrate the start of an incredible journey at NIT PY. Let's make this day unforgettable!
+    </p>
+  </div>
+</div>
+
+{% endblock %}

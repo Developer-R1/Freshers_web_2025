@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Our Team {% endblock %}
+
+{% block extra_css %}
+
+<style>
+
+  #teams-section {
+  position: relative;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #111, #222);
+  color: #fff;
+  overflow: hidden;
+}
+
+#teams-section .overlay {
+  position: absolute;
+  inset: 0;
+  animation: shimmer 6s infinite linear;
+  z-index: 0;
+}
+
+#teams-section .container, 
+#teams-section .text-center {
+  position: relative;
+  z-index: 2;
+}
+
+/* Title */
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #ffcc00;
+  text-shadow: 0 0 8px #ff3c2e, 0 0 16px #ff3c2e;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* Stats */
+.stats-box {
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-weight: bold;
+  background: #111;
+  border: 2px solid #00eaff;
+  box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+}
+
+.stats-box i {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Tabs */
+.team-tabs .nav-link {
+  background: transparent;
+  border: 2px solid #ff3c2e;
+  color: #fff;
+  margin: 0 8px;
+  border-radius: 10px;
+  padding: 8px 16px;
+  transition: 0.3s;
+}
+
+.team-tabs .nav-link.active {
+  background: #ff3c2e;
+  color: #fff;
+  box-shadow: 0 0 10px #ff3c2e;
+}
+
+/* Team Cards */
+.team-card {
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(20,20,20,0.95);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px #ff3c2e, 0 0 30px #ffcc00;
+}
+
+ .team-card img {
+  width: 180px;   /* ⬅️ increased size from 160px to 180px */
+  height: 180px;  /* ⬅️ increased size from 160px to 180px */
+  object-fit: contain;  /* ⬅️ changed from cover → contain to show full image */
+  /* border-radius: 50%; */
+  border: 3px solid #ffcc00;
+  box-shadow: 0 0 10px #ff3c2e;
+  background: #111;
+  padding: 4px;
+}
+
+/* Fix: Title visibility */
+.card-title {
+  color: #ffcc00 !important;
+  font-weight: 700;
+  text-shadow: 0 0 5px #000;
+}
+
+/* Fix: Role visibility */
+.card-body p {
+  color: #ccc !important;
+  font-size: 0.9rem;
+}
+
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .team-title {
+    font-size: 1.4rem;
+  }
+  .stats-box {
+    margin-bottom: 1rem;
+  }
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<section id="teams-section">
+  <div class="overlay"></div>
+
+  <!-- Title -->
+  <div class="text-center mt-5">
+    <h1 class="hero-title">👥 Our Team</h1>
+    <p class="tagline"><span class="highlight-red">Meet the Minds</span> ✨ <span class="highlight-yellow">Behind the Magic</span></p>
+  </div>
+
+  
+  <!-- Tabs -->
+  <div class="container mt-5">
+    <ul class="nav nav-pills justify-content-center team-tabs mb-4" role="tablist">
+      {% for category in teams_by_category.keys %}
+        <li class="nav-item">
+          <button class="nav-link {% if forloop.first %}active{% endif %}" data-bs-toggle="pill" data-bs-target="#{{ category|slugify }}">
+            {{ category|capfirst }}
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Members by category -->
+    <div class="tab-content">
+      {% for category, members in teams_by_category.items %}
+      <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ category|slugify }}">
+        <div class="text-center mb-4">
+          <h3 class="team-title">{{ category|capfirst }} Team</h3>
+        </div>
+
+        
+        <div class="row justify-content-center g-4">
+          {% for member in members %}
+              <div class="col-md-3 col-sm-6">
+                <div class="team-card text-center h-100">
+                  {% if member.head_photo %}
+                <img src="{{ member.head_photo.url }}" class="team-avatar mx-auto d-block" alt="{{ member.head_name }}">
+                {% else %}
+                <img src="{% static 'images/placeholder-avatar.png' %}" class="team-avatar mx-auto d-block" alt="No photo">
+                {% endif %}
+                  <div class="team-meta">
+                    <h5 class="member-name">{{ member.head_name }}</h5>
+                    <p class="member-role">{{ member.head_designation }}</p>
+                    {% if member.head_linkedin %}
+                    <a href="{{ member.head_linkedin }}" target="_blank" class="linkedin-icon" aria-label="LinkedIn">
+                      <i class="bi bi-linkedin"></i>
+                    </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

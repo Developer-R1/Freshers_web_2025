@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Schedule {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+  /* 🌑 Base theme */
+body {
+  font-family: 'Rajdhani', sans-serif;
+  /* padding-top: var(--navbar-height); */
+  background: rgba(20, 20, 20, 0.95);
+  color: #fff;
+  margin: 0;
+  padding:0;
+}
+
+/* Container */
+.theater-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Stage wrapper */
+.theater-stage {
+  max-width: 1000px;
+  width: 100%;
+  margin-top:4rem;
+  text-align: center;
+}
+
+/* Title + date */
+.title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px #ff0055, 0 0 15px #ff0055;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: #f0c674;
+  margin-bottom: 30px;
+}
+
+/* 🌑 Schedule Page Styling - Dark + Gold Theme */
+
+/* Schedule Section */
+.schedule-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Each schedule card */
+.schedule-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #1a1a1a; /* match neon-card dark background */
+    border-left: 4px solid #ffdf00; /* gold accent border */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Hover glow */
+.schedule-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(255, 223, 0, 0.3);
+}
+
+/* Time slot */
+.time {
+    font-weight: bold;
+    color: #ffdf00; /* gold */
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: block;
+    text-shadow: 0 0 6px rgba(255, 223, 0, 0.5);
+}
+
+/* Event details wrapper */
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Event Title */
+.details strong {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    text-shadow: 0 0 8px rgba(255, 223, 0, 0.5);
+}
+
+/* Location */
+.location {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* 📱 Responsive */
+@media (min-width: 768px) {
+    .schedule-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .schedule-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<main class="theater-container">
+  
+  <div class="theater-stage">
+    <h1 class="title">📅 Schedule</h1>
+    <h2 class="date">Sat., May 01</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Inauguration of Fresher’s Day</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">01:00 pm - 02:30 pm</span>
+        <div class="details">
+          <strong>Dance Performance</strong>
+          <p class="location">📍 Open Air Stage</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">03:00 pm - 04:30 pm</span>
+        <div class="details">
+          <strong>Drama Show</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="date">Sat., sept 04</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Inauguration of Fresher’s Day</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">01:00 pm - 02:30 pm</span>
+        <div class="details">
+          <strong>Dance Performance</strong>
+          <p class="location">📍 Open Air Stage</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">03:00 pm - 04:30 pm</span>
+        <div class="details">
+          <strong>Drama Show</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="date">Sat., sept 05</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Inauguration of Fresher’s Day</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">01:00 pm - 02:30 pm</span>
+        <div class="details">
+          <strong>Dance Performance</strong>
+          <p class="location">📍 Open Air Stage</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">03:00 pm - 04:30 pm</span>
+        <div class="details">
+          <strong>Drama Show</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+</main>
+{% endblock %}

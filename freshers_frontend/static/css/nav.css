@@ -1,0 +1,222 @@
+/*
+    ====================
+    Navigation Bar - Pure CSS
+    ====================
+*/
+:root {
+    --color-primary-gold: #ffdf00;
+    --color-secondary-red: #ff0055;
+    --color-dark-bg: #1a1a1a;
+    --color-text-light: #fff;
+    --color-text-dark: #000;
+}
+
+/* Base Navbar Styles */
+.custom-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(26, 26, 26, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Brand Logo */
+.nav-brand {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-primary-gold);
+    text-shadow: 0 0 5px var(--color-primary-gold);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.nav-brand:hover {
+    transform: scale(1.05);
+}
+
+/* Hamburger Icon (visible on mobile) */
+.nav-toggler {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid var(--color-primary-gold);
+    background: transparent;
+    cursor: pointer;
+}
+
+.toggler-icon {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 223, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+/* Navigation Links */
+.nav-links-wrapper {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background-color: var(--color-dark-bg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+#Nav.collapse.show {
+    display: block;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-item {
+    margin: 0.5rem 0;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.75rem 0;
+    display: block;
+}
+
+.nav-link:hover {
+    color: var(--color-primary-gold);
+    text-shadow: 0 0 8px var(--color-primary-gold);
+}
+
+/* Buttons */
+.nav-button {
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.nav-button.signup {
+    background-color: var(--color-secondary-red);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-secondary-red);
+}
+
+.nav-button.signup:hover {
+    background-color: transparent;
+    color: var(--color-secondary-red);
+    box-shadow: 0 0 15px var(--color-secondary-red);
+}
+
+.nav-button.logout {
+    background-color: transparent;
+    color: var(--color-text-light);
+    border: 2px solid var(--color-text-light);
+}
+
+.nav-button.logout:hover {
+    background-color: var(--color-text-light);
+    color: var(--color-text-dark);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Profile Picture as Icon */
+.profile-item .nav-link {
+    padding: 0;
+}
+
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-primary-gold);
+    box-shadow: 0 0 5px var(--color-primary-gold);
+    vertical-align: middle;
+}
+.sign-up-btn{
+    background-color: var(--color-secondary-red);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-secondary-red);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/*
+    ====================
+    Responsive Styles (for desktop)
+    ====================
+*/
+@media (min-width: 992px) {
+    .nav-toggler {
+        display: none;
+    }
+
+    .nav-links-wrapper {
+        display: block !important;
+        position: static;
+        background: none;
+        box-shadow: none;
+        width: auto;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .nav-item {
+        margin: 0 0.5rem;
+    }
+
+    .nav-link {
+        padding: 0.75rem 0;
+    }
+
+    .nav-button {
+        margin-left: 0.5rem;
+    }
+
+    /* Style profile icon on desktop */
+    .profile-item {
+        margin-left: 0.5rem;
+        margin-right: 0;
+    }
+
+    .profile-item .nav-link {
+        padding: 0;
+    }
+}

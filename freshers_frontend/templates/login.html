@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login | Freshers Day{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sign_up.css' %}">
+{% endblock %}
+{% block content %}
+<div class="form-container">
+  <h1>Login</h1>
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert error-message">{{ message }}</div> <!-- NEW -->
+      {% endfor %}
+    {% endif %}
+    <div class="form-group">
+      <label for="roll_no">Roll No.</label>
+      <input placeholder="Enter your roll number" type="text" name="roll_no" required> <!-- CHANGED -->
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input placeholder="Enter your password" type="password" name="password" required>
+    </div>
+    <button type="submit" class="form-button">Login</button>
+    <div class="buttons-forms">
+      <a href="{% url 'signup' %}" class="Register-button">Signup</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
