@@ -1,0 +1,1000 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Schedule {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  /* padding-top: var(--navbar-height); */
+  background: rgba(20, 20, 20, 0.95);
+  color: #fff;
+  margin: 0;
+  padding:0;
+}
+
+
+.theater-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+
+.theater-stage {
+  max-width: 1000px;
+  width: 100%;
+  margin-top:4rem;
+  text-align: center;
+}
+
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px #ff0055, 0 0 15px #ff0055;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: #f0c674;
+  margin-bottom: 30px;
+}
+
+
+.schedule-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+
+.schedule-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #1a1a1a; 
+    border-left: 4px solid #ffdf00; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+
+.schedule-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(255, 223, 0, 0.3);
+}
+
+
+.time {
+    font-weight: bold;
+    color: #ffdf00; 
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: block;
+    text-shadow: 0 0 6px rgba(255, 223, 0, 0.5);
+}
+
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.details strong {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    text-shadow: 0 0 8px rgba(255, 223, 0, 0.5);
+}
+
+
+.location {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+@media (min-width: 768px) {
+    .schedule-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .schedule-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<main class="theater-container">
+  
+  <div class="theater-stage">
+    <h1 class="title">📅 Schedule</h1>
+    <h2 class="date">Wed., Aug 27</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">4:00 pm - 6:00 pm</span>
+        <div class="details">
+          <strong>Throwball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:00 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Volleyball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+<!-- 
+      <div class="schedule-item neon-card">
+        <span class="time">03:00 pm - 04:30 pm</span>
+        <div class="details">
+          <strong>Drama Show</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div> -->
+
+    </div>
+
+
+    <h2 class="date">Thurs., Aug 28</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 7:30 am</span>
+        <div class="details">
+          <strong>Volleyball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 6:00 pm</span>
+        <div class="details">
+          <strong>Throwball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:00 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Volleyball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+      <!-- <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div> -->
+
+    </div>
+
+
+    <h2 class="date">Fri., Aug 29</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 8:00 pm</span>
+        <div class="details">
+          <strong>Marathon</strong>
+          <!-- <p class="location">📍 Kira Auditorium</p> -->
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 7:00 pm</span>
+        <div class="details">
+          <strong>Throwball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">7:00 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Volleyball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+      <!-- <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div> -->
+
+    </div>
+
+    <h2 class="date">Sat., Aug 30</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 7:30 am</span>
+        <div class="details">
+          <strong>Throwball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Badminton (Girls)</strong>
+          <p class="location">📍 Badminton court (near Bharani Hostel)</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Table Tennis (Boys)</strong>
+          <p class="location">📍 1st floor SCB </p>
+        </div>
+      </div>
+
+      <!-- <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div> -->
+
+    </div>
+
+
+    <h2 class="date">Sun., Aug 31</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 9:00 am</span>
+        <div class="details">
+          <strong>Shotput, Long Jump, Discuss Throw</strong>
+          <p class="location">📍 Football ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Badminton (Boys)</strong>
+          <p class="location">📍 Badminton court (near Bharani Hostel) </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Table Tennis (Girls) </strong>
+          <p class="location">📍 1st floor SCB </p>
+        </div>
+      </div>
+
+      <!-- <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div> -->
+
+    </div>
+
+
+    <h2 class="date">Mon., sept 01</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 8:00 am</span>
+        <div class="details">
+          <strong>Football</strong>
+          <p class="location">📍 Football ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 7:30 am</span>
+        <div class="details">
+          <strong>Basketball</strong>
+          <p class="location">📍 Basketball court (near Bharani Hostel)</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">4:00 pm - 6:30 pm</span>
+        <div class="details">
+          <strong>Football</strong>
+          <p class="location">📍 Football ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:00 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Basketball</strong>
+          <p class="location">📍 Basketball court (near Bharani Hostel) </p>
+        </div>
+      </div>
+
+      
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Badminton</strong>
+          <p class="location">📍 Badminton court (near Bharani Hostel) </p>
+        </div>
+      </div>
+
+      
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 6:30 pm</span>
+        <div class="details">
+          <strong>Throwball</strong>
+          <p class="location">📍 SCB Volleyball court</p>
+        </div>
+      </div>
+
+
+    </div>
+
+    <h2 class="date">Tue., sept 02</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 8:00 am</span>
+        <div class="details">
+          <strong>Football</strong>
+          <p class="location">📍 Football ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 8:00 am</span>
+        <div class="details">
+          <strong>Basketball</strong>
+          <p class="location">📍 Basketball court (near Bharani Hostel) </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 6:30 pm</span>
+        <div class="details">
+          <strong>Football</strong>
+          <p class="location">📍 Football ground </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:00 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Basketball</strong>
+          <p class="location">📍 Basketball court (near Bharani Hostel) </p>
+        </div>
+      </div>
+
+      
+      <div class="schedule-item neon-card">
+        <span class="time">5:30 pm - 7:30 pm</span>
+        <div class="details">
+          <strong>Badminton (Girls) </strong>
+          <p class="location">📍 Badminton court (near Bharani Hostel) </p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="date">Wed., sept 03</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 am - 8:00 am</span>
+        <div class="details">
+          <strong>Football</strong>
+          <p class="location">📍 Football ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 6:30 pm</span>
+        <div class="details">
+          <strong>Football</strong>
+          <p class="location">📍 Football ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:00 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Basketball</strong>
+          <p class="location">📍 Basketball court (near Bharani Hostel) </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 7:30 pm</span>
+        <div class="details">
+          <strong>Chess and Carrom</strong>
+          <p class="location">📍 SCB FF3(chess) and SCB FF6(carrom) </p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="date">Thurs., sept 04</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 6:30 pm</span>
+        <div class="details">
+          <strong>Football</strong>
+          <p class="location">📍 Football ground </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 pm - 8:00 pm</span>
+        <div class="details">
+          <strong>Volleyball</strong>
+          <p class="location">📍 SCB Volleyball court </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 7:30 pm</span>
+        <div class="details">
+          <strong>Chess and Carrom</strong>
+          <p class="location">📍 SCB FF3(chess) and SCB FF6(carrom) </p>
+        </div>
+      </div>
+
+      <!-- <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div> -->
+
+    </div>
+
+
+    <!-- <h2 class="date">Sat., sept 05</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Inauguration of Fresher’s Day</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">01:00 pm - 02:30 pm</span>
+        <div class="details">
+          <strong>Dance Performance</strong>
+          <p class="location">📍 Open Air Stage</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">03:00 pm - 04:30 pm</span>
+        <div class="details">
+          <strong>Drama Show</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="date">Sat., sept 05</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Inauguration of Fresher’s Day</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">01:00 pm - 02:30 pm</span>
+        <div class="details">
+          <strong>Dance Performance</strong>
+          <p class="location">📍 Open Air Stage</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">03:00 pm - 04:30 pm</span>
+        <div class="details">
+          <strong>Drama Show</strong>
+          <p class="location">📍 Kira Auditorium</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">05:00 pm - 06:00 pm</span>
+        <div class="details">
+          <strong>Fashion Show</strong>
+          <p class="location">📍 Main Hall</p>
+        </div>
+      </div>
+
+    </div> -->
+
+    <h2 class="date">Fri., sept 05</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10 am - 10:30 am</span>
+        <div class="details">
+          <strong>Name reveal and Inauguration</strong>
+          <p class="location">📍 SCB Volleyball Ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 4:30 pm</span>
+        <div class="details">
+          <strong>Box cricket</strong>
+          <p class="location">📍 SCB Volleyball Ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 4:30 pm</span>
+        <div class="details">
+          <strong>Cine Sketches</strong>
+          <p class="location">📍 SCB Back entrance </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 11:30 am</span>
+        <div class="details">
+          <strong>Scene stealers (1st round)</strong>
+          <p class="location">📍 SF4 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 2:00 pm</span>
+        <div class="details">
+          <strong>Lights, camera, screams</strong>
+          <p class="location">📍 FF4 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 12:00 pm</span>
+        <div class="details">
+          <strong>Classic-Cine Beats</strong>
+          <p class="location">📍 FF3 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">11:00 am - 12:00 pm</span>
+        <div class="details">
+          <strong>Green Talks(Aranyam)</strong>
+          <p class="location">📍 FF6 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">11:00 am - 12:00 pm</span>
+        <div class="details">
+          <strong>Filmoji Fun</strong>
+          <p class="location">📍 FF5 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">11:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Atta chustava</strong>
+          <p class="location">📍 SF5 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">2:00 pm - 5:00 pm</span>
+        <div class="details">
+          <strong>Reel to Real (IIC)</strong>
+          <p class="location">📍 SF6 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">2:00 pm - 4:00 pm</span>
+        <div class="details">
+          <strong>Infinity War</strong>
+          <p class="location">📍 FF3 </p>
+        </div>
+      </div>      
+
+      <div class="schedule-item neon-card">
+        <span class="time">3:00 pm - 4:30 pm</span>
+        <div class="details">
+          <strong>Guess and Groove</strong>
+          <p class="location">📍 SF7  </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:30 pm - 6:30 pm</span>
+        <div class="details">
+          <strong>Battle of Beats</strong>
+          <p class="location">📍 SCB Open Stage </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:30 pm - 7:30 pm</span>
+        <div class="details">
+          <strong>Show Time - Freshers got talent</strong>
+          <p class="location">📍 SCB Open Stage </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">7:30 pm - 8:30 pm</span>
+        <div class="details">
+          <strong>External Band (IGMC) </strong>
+          <p class="location">📍 SCB Open Stage </p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <h2 class="date">Sat., sept 06</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 4:30 pm</span>
+        <div class="details">
+          <strong>Box cricket</strong>
+          <p class="location">📍 SCB Volleyball Ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:00 pm</span>
+        <div class="details">
+          <strong>Robotic Masterclass</strong>
+          <p class="location">📍 SF7 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Flex and Fit</strong>
+          <p class="location">📍 FF4 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 2:00 pm</span>
+        <div class="details">
+          <strong>Lights, camera, screams</strong>
+          <p class="location">📍 FF4 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Funfinity Fusion</strong>
+          <p class="location">📍 FF6 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Innovate to Escape (IIC)</strong>
+          <p class="location">📍 SF2 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 4:30 pm</span>
+        <div class="details">
+          <strong>Desk-O-Beats (RIPA)</strong>
+          <p class="location">📍 SCB Ground floor </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">11:30 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Family Feud</strong>
+          <p class="location">📍 FF5 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">2:00 pm - 3:30 pm</span>
+        <div class="details">
+          <strong>Star Swap (Tamil club)</strong>
+          <p class="location">📍 FF3 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">2:00 pm - 4:00 pm</span>
+        <div class="details">
+          <strong>Switch It Up</strong>
+          <p class="location">📍 FF5 </p>
+        </div>
+      </div>      
+
+      <div class="schedule-item neon-card">
+        <span class="time">3:30 pm - 5:00 pm</span>
+        <div class="details">
+          <strong>Treasure Hunt</strong>
+          <p class="location">📍 SF5 and Campus ground  </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:00 pm - 6:40 pm</span>
+        <div class="details">
+          <strong>Scene Stealers (Round 2)</strong>
+          <p class="location">📍 SCB Open Stage </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:45 pm - 7:30 pm</span>
+        <div class="details">
+          <strong>Mr and Mrs Fresher (Round 1) </strong>
+          <p class="location">📍 SCB Open Stage </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">7:30 pm - 8:30 pm</span>
+        <div class="details">
+          <strong> DJ </strong>
+          <p class="location">📍 SCB Open Stage </p>
+        </div>
+      </div>
+
+
+    </div>
+
+    <h2 class="date">Sun., sept 07</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Box cricket</strong>
+          <p class="location">📍 SCB Volleyball Ground</p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Otaku Arena </strong>
+          <p class="location">📍 FF6 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 12:00 pm</span>
+        <div class="details">
+          <strong>Stacked Out</strong>
+          <p class="location">📍 FF2 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 12:00 pm</span>
+        <div class="details">
+          <strong>Tech Championship</strong>
+          <p class="location">📍 FF3 and CSE Lab </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Gaming Arcade</strong>
+          <p class="location">📍 GF4 (Admin Block) </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">10:30 am - 11:30 am</span>
+        <div class="details">
+          <strong>Celestial Clash</strong>
+          <p class="location">📍 Admin CSE Lab </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">11:30 am - 12:30 pm</span>
+        <div class="details">
+          <strong>Zone Zindagi</strong>
+          <p class="location">📍 Admin CSE Lab </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">11:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Unscripted</strong>
+          <p class="location">📍 FF5 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">11:00 am - 1:00 pm</span>
+        <div class="details">
+          <strong>Mind Buzz Quiz (IIC)</strong>
+          <p class="location">📍 SF7 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">2:00 pm - 4:30 pm</span>
+        <div class="details">
+          <strong>Movie Screening</strong>
+          <p class="location">📍 Kiraa  </p>
+        </div>
+      </div>      
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:00 pm - 5:30 pm</span>
+        <div class="details">
+          <strong>Glam Beats</strong>
+          <p class="location">📍 Kiraa  </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">5:30 pm - 6:00 pm</span>
+        <div class="details">
+          <strong>Mr and Mrs Fresher (Round 2)</strong>
+          <p class="location">📍 Kiraa </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">6:00 pm - 7:30 pm</span>
+        <div class="details">
+          <strong> Valedictory Ceremony </strong>
+          <p class="location">📍 Kiraa </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <span class="time">7:30 pm - 8:30 pm</span>
+        <div class="details">
+          <strong> Culturals </strong>
+          <p class="location">📍 Kiraa </p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <h2 class="date">Online Competitions</h2>
+
+    <div class="schedule-list">
+      
+      <div class="schedule-item neon-card">
+        <!-- <span class="time">10:00 am - 1:00 pm</span> -->
+        <div class="details">
+          <strong>Candid and Nature Photography</strong>
+          <p class="location">📍 Online and photo display at FF3 on 07/09/25 </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <!-- <span class="time">10:00 am - 1:00 pm</span> -->
+        <div class="details">
+          <strong> Reels Competition </strong>
+          <p class="location">📍 Online </p>
+        </div>
+      </div>
+
+      <div class="schedule-item neon-card">
+        <!-- <span class="time">10:30 am - 12:00 pm</span> -->
+        <div class="details">
+          <strong>Archives 25 (Art Beatz)</strong>
+          <p class="location">📍 Online </p>
+        </div>
+      </div>
+
+      
+
+
+  </div>
+
+
+
+
+  
+
+
+
+</main>
+{% endblock %}

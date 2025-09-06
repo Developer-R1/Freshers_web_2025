@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Game Events {% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/events.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="theater-container">
+    <div class="theater-stage">
+        <div class="events-page">
+            <h1 class="heading">Game Events</h1>
+            <p class="subtext">
+                Deadly games await. Each one a test of skill, strategy, and survival.
+                Choose wisely – your fate depends on it.
+            </p>
+
+            <ul class="tabs" id="eventTabs">
+                <li><button class="tab-button active" data-category="all">All Events</button></li>
+                <li><button class="tab-button" data-category="club">Club Events</button></li>
+                <li><button class="tab-button" data-category="non_club">Non Club Events</button></li>
+            </ul>
+
+            {% if alert %}<script>alert("{{ alert|escapejs }}");</script>{% endif %}
+
+            <div class="event-grid" id="eventContainer">
+                {% for event in events %}
+                <div class="event-card" data-type="{{ event.event_type }}">
+                    <h5 class="title">{{ event.title }}</h5>
+                    {% if event.club %}
+                        <p>Club: {{ event.club }}</p>
+                    {% endif %}
+                    <p class="description">{{ event.description }}</p>
+
+                    <ul class="event-details">
+                        <li><i class="far fa-calendar-alt me-2"></i> {{ event.date }} | {{ event.time }}</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> {{ event.venue }}</li>
+                        <!-- <li><i class="fas fa-trophy me-2"></i> ₹{{ event.prize }} for Winner</li> -->
+                    </ul>
+
+                    <div class="progress-section">
+                        <label>Participants: {{ event.participants }}/{{ event.capacity }}</label>
+                        <div class="progress-bar">
+                            <div class="progress-fill"
+                                 style="width: {% widthratio event.participants event.capacity 100 %}%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="coordinators-section">
+                        {% if event.coordinator1 %}
+                            <div class="coordinator">
+                                <p><strong>Coordinator 1: </strong>&nbsp; {{ event.coordinator1 }} 
+                                    {% if event.coordinator1_phone %}
+                                        <span class="phone">- {{ event.coordinator1_phone }}</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        {% endif %}
+                        {% if event.coordinator2 %}
+                            <div class="coordinator">
+                                <p><strong>Coordinator 2: </strong>&nbsp; {{ event.coordinator2 }} 
+                                    {% if event.coordinator2_phone %}
+                                        <span class="phone">- {{ event.coordinator2_phone }}</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        {% endif %}
+                        {% if event.coordinator3 %}
+                            <div class="coordinator">
+                                <p><strong>Coordinator 3: </strong>&nbsp; {{ event.coordinator3 }} 
+                                    {% if event.coordinator3_phone %}
+                                        <span class="phone">- {{ event.coordinator3_phone }}</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        {% endif %}
+                        {% if event.coordinator4 %}
+                            <div class="coordinator">
+                                <p><strong>Coordinator 4: </strong>&nbsp; {{ event.coordinator4 }} 
+                                    {% if event.coordinator4_phone %}
+                                        <span class="phone">- {{ event.coordinator4_phone }}</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="button-row">
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-primary" href="{% url 'join_event' event.id %}">Join Now</a>
+                           
+                            {% if event.is_user_coordinator %}
+                                <a href="{% url 'download_event_csv' event.id %}" class="btn btn-light btn-sm">Download CSV</a>
+                                </a>
+                            {% endif %}
+                        {% else %}
+                            <a class="btn btn-primary" href="{% url 'login' %}?next={% url 'join_event' event.id %}">Login to Join</a>
+                        {% endif %}
+                        <!-- <a class="btn btn-outline" href="#">Rules</a> -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/events.js' %}"></script>
+{% endblock %}

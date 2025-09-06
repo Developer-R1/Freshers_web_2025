@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register | Freshers Day{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/sign_up.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+  <div class="container signup-container py-5">
+    <div class="form-container mx-auto p-4 bg-dark text-white rounded shadow" style="max-width: 600px;">
+      <h2 class="mb-4">Sign Up</h2>
+
+      <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="alert error-message">{{ form.non_field_errors }}</div> 
+        {% endif %}
+
+        <div class="form-group">
+          <label>Roll No. or Username (if dont have Roll No.)</label>
+          {{ form.roll_no }}
+          {% if form.roll_no.errors %}<div class="alert error-message">{{ form.roll_no.errors|striptags }}</div>{% endif %} 
+        </div>
+
+        <div class="form-group">
+          <label>Name</label>
+          {{ form.name }}
+          {% if form.name.errors %}<div class="alert error-message">{{ form.name.errors|striptags }}</div>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          {{ form.email }}
+          {% if form.email.errors %}<div class="alert error-message">{{ form.email.errors|striptags }}</div>{% endif %} 
+        </div>
+
+        <div class="form-group">
+          <label>Year</label>
+          {{ form.year }}
+          {% if form.year.errors %}<div class="alert error-message">{{ form.year.errors|striptags }}</div>{% endif %} 
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          {{ form.phone_number }}
+          {% if form.phone_number.errors %}<div class="alert error-message">{{ form.phone_number.errors|striptags }}</div>{% endif %} 
+        </div>
+
+        <div class="form-group">
+          <label>Department</label>
+          {{ form.department }}
+          {% if form.department.errors %}<div class="alert error-message">{{ form.department.errors|striptags }}</div>{% endif %} 
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          {{ form.password1 }}
+          {% if form.password1.errors %}<div class="alert error-message">{{ form.password1.errors|striptags }}</div>{% endif %} 
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          {{ form.password2 }}
+          {% if form.password2.errors %}<div class="alert error-message">{{ form.password2.errors|striptags }}</div>{% endif %} 
+        </div>
+
+        <button type="submit" class="form-button btn btn-warning w-100">Sign Up</button>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'login' %}" class="text-light">Already have an account?</a>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

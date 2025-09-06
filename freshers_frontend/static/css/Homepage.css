@@ -1,0 +1,145 @@
+
+    body {
+     
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      background-color: #ffffff;
+      text-align: center;
+      
+    }
+    .home-con {
+      margin-top: 3rem;
+    }
+
+    .main-title {
+      
+      font-weight: 700;
+      
+      font-size: 4.5rem; 
+      margin: 0;
+      background: linear-gradient(180deg, #710029 -16.77%, #F44786 80%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+    }
+
+    
+    .year-suffix {
+      font-size: 2.5rem;
+      vertical-align: super;
+      margin-left: 5px;
+      background: linear-gradient(180deg, #710029 -16.77%, #F44786 80%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+    }
+
+    .sub-title {
+      font-size: 1.4rem;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+
+    .description {
+      color: #555;
+      font-size: 1rem;
+      max-width: 500px; 
+      margin: 10px auto 0 auto;
+      color: rgba(0, 0, 0, 0.59);
+
+        text-align: center;
+
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .register-btn {
+      border-radius: 15px;
+background: #FF357F;
+      color: white;
+      border: none;
+      font-weight: 700;
+      font-size: 1.8rem;
+      padding: 15px 60px;
+      margin-top: 25px;
+      
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .register-btn:hover {
+      background-color: #d93672;
+    transform: scale(1.03);
+    }
+
+    .timer-box {
+      background: #2BB7B4;
+      color: white;
+      padding: 30px;
+      border-radius: 15px; 
+      margin: 40px auto 0 auto;
+      max-width: 700px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .timer-title {
+        font-style: italic;
+        font-size: 1.75rem;
+        font-weight: 500;
+    }
+
+ 
+    .time-unit {
+      font-size: 3.1rem;
+      background-color: #ffffff; 
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 10px;
+      width: 90px;
+      line-height: 1.2;
+      color: #195452;
+
+    }
+
+    .time-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    
+    
+    .actions-container {
+        display: flex;
+        justify-content: center;
+        gap: 3rem; 
+        margin-top: 40px;
+        flex-wrap: wrap; 
+    }
+
+    
+    .outline-btn {
+      background-color: white;
+      color: #FF357F;
+      border: 2.5px solid #FF357F;
+      font-weight: 700;
+        font-size: 1.5rem;
+      padding: 12px 30px;
+      border-radius: 15px;
+      text-decoration: none;
+      width: 180px;
+      transition: all 0.2s;
+    }
+
+    .outline-btn:hover {
+        background: #FF357F;
+        border: 2.5px solid rgba(255, 53, 127, 0.69);
+
+        color: white;
+    }
+

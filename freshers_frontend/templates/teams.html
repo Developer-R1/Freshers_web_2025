@@ -1,0 +1,448 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Our Teams {% endblock %}
+
+<!-- 
+
+<style>
+  #teams-section {
+    position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #111, #222);
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #ffcc00;
+    text-shadow: 0 0 8px #ff3c2e, 0 0 16px #ff3c2e;
+  }
+
+  .team-card {
+    padding: 1rem;
+    border-radius: 16px;
+    background: rgba(20,20,20,0.95);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px #ff3c2e, 0 0 30px #ffcc00;
+  }
+
+  /* 🔹 changed for responsiveness */
+  .team-card img {
+    max-width: 100%;   /* scale image inside card */
+    height: auto;      /* keep aspect ratio */
+    max-height: 200px; /* prevent too tall images */
+    object-fit: contain;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 10px #ff3c2e;
+    background: #111;
+    padding: 4px;
+    /* border-radius: 50%;  */
+  }
+
+  .team-tabs .nav-link {
+    background: transparent;
+    border: 2px solid #ff3c2e;
+    color: #fff;
+    margin: 0 8px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    transition: 0.3s;
+  }
+
+  .team-tabs .nav-link.active {
+    background: #ff3c2e;
+    color: #fff;
+    box-shadow: 0 0 10px #ff3c2e;
+  }
+
+  /* 🔹 new: keep spacing consistent on small screens */
+  .team-meta {
+    margin-top: 0.75rem;
+    word-wrap: break-word;
+  }
+</style>
+
+
+
+
+
+<section id="teams-section">
+  <div class="overlay"></div>
+
+  <div class="text-center mt-5">
+    <h1 class="hero-title">👥 Meet Our Teams</h1>
+    <p class="tagline">✨ Discover the people <span class="highlight-yellow">behind the magic</span></p>
+  </div>
+
+  <div class="container mt-5">
+ 
+    <ul class="nav nav-pills justify-content-center team-tabs mb-4" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#corecommittee">Core Committee</button> 
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#webteam">Web Team</button> 
+      </li> -->
+      <!-- <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#eventteams">Event Teams</button> 
+      </li> -->
+    <!-- </ul>
+
+    <div class="tab-content">
+    
+      <div class="tab-pane fade show active" id="corecommittee">
+        <div class="row justify-content-center g-4">
+          {% for member in core_committee %}  
+            <div class="col-md-3 col-sm-6">
+              <div class="team-card text-center h-100">
+                {% if member.photo %}
+                  <img src="{{ member.photo.url }}" class="team-avatar mx-auto d-block" alt="{{ member.name }}">
+                {% else %}
+                  <img src="{% static 'images/placeholder-avatar.png' %}" alt="No photo">
+                {% endif %}
+                <div class="team-meta">
+                  <h5 class="member-name">{{ member.name }}</h5>
+                  <p class="member-role">{{ member.role }}</p>
+                  {% if member.linkedin %}
+                  <a href="{{ member.linkedin }}" target="_blank"><i class="bi bi-linkedin"></i></a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="webteam">
+  <div class="row justify-content-center g-4">
+    {% for member in web_team %}
+      <div class="col-md-3 col-sm-6">
+        <div class="team-card text-center h-100">
+          {% if member.image %}
+            <img src="{{ member.image.url }}" alt="{{ member.name }}">
+          {% else %}
+            <img src="{% static 'images/placeholder-avatar.png' %}" alt="No photo">
+          {% endif %}
+          <div class="team-meta mt-2">
+            <h5 class="member-name">{{ member.name }}</h5>
+            <p class="member-role">{{ member.position }}</p>
+            <div class="social-links">
+                {% if member.linkedin_link %}
+                  <div class="d-flex justify-content-center mt-2">
+                    <a href="{{ member.linkedin_link }}" target="_blank" class="btn btn-warning w-100 d-sm-inline-block d-md-block">
+                      <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                  </div>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div> -->
+
+    
+      <!-- <div class="tab-pane fade" id="eventteams">
+        
+        <ul class="nav nav-pills justify-content-center team-tabs mb-4" role="tablist">
+          {% for category in teams_by_category.keys %}
+            <li class="nav-item">
+              <button class="nav-link {% if forloop.first %}active{% endif %}" data-bs-toggle="pill" data-bs-target="#{{ category|slugify }}">
+                {{ category|capfirst }}
+              </button>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="tab-content">
+          {% for category, members in teams_by_category.items %}
+            <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ category|slugify }}">
+              <div class="text-center mb-4">
+                <h3 class="team-title">{{ category|capfirst }} Team</h3>
+              </div>
+              <div class="row justify-content-center g-4">
+                {% for member in members %}
+                  <div class="col-md-3 col-sm-6">
+                    <div class="team-card text-center h-100">
+                      {% if member.head_photo %}
+                        <img src="{{ member.head_photo.url }}" alt="{{ member.head_name }}">
+                      {% else %}
+                        <img src="{% static 'images/placeholder-avatar.png' %}" alt="No photo">
+                      {% endif %}
+                      <div class="team-meta">
+                        <h5 class="member-name">{{ member.head_name }}</h5>
+                        <p class="member-role">{{ member.head_designation }}</p>
+                        {% if member.head_linkedin %}
+                          <a href="{{ member.head_linkedin }}" target="_blank"><i class="bi bi-linkedin"></i></a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div> -->
+    <!-- </div>
+  </div>
+</section> -->
+
+
+
+
+
+{% block extra_css %}
+<style>
+  #teams-section {
+    position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #111, #222);
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #ffcc00;
+    text-shadow: 0 0 8px #ff3c2e, 0 0 16px #ff3c2e;
+  }
+
+  .team-tabs .nav-link {
+    background: transparent;
+    border: 2px solid #ff3c2e;
+    color: #fff;
+    margin: 0 8px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    transition: 0.3s;
+  }
+  .team-tabs .nav-link.active {
+    background: #ff3c2e;
+    color: #fff;
+    box-shadow: 0 0 10px #ff3c2e;
+  }
+
+
+  .team-card { 
+    padding: 1rem;
+    border-radius: 16px;
+    background: rgba(20,20,20,0.95);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;              
+    flex-direction: column;    
+    align-items: center;        
+    height: 100%;               
+    overflow: hidden;           
+    text-align: center;         
+  }
+  .team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px #ff3c2e, 0 0 30px #ffcc00;
+  }
+
+
+  .avatar-wrap {              
+    width: 160px;
+    height: 160px;
+    /* border-radius: 50%; */
+    overflow: hidden;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 10px #ff3c2e;
+    background: #111;
+  }
+  .avatar-wrap img {            
+    width: 100%;
+    height: 100%;
+    object-fit: contain;          
+    display: block;
+  }
+
+
+  @media (min-width: 768px) {   
+    .avatar-wrap { width: 170px; height: 170px; }
+  }
+  @media (min-width: 992px) {   
+    .avatar-wrap { width: 180px; height: 180px; }
+  }
+
+  .team-meta {                
+    margin-top: 0.75rem;
+    width: 100%;
+  }
+  .member-name {            
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+  }
+  .member-role {               
+    color: #ccc;
+    font-size: 0.95rem;
+    min-height: 1.25rem; 
+  }
+
+  @media (max-width: 991px) {
+    html, body {
+      height: 100%;    
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    #teams-section {
+      flex: 1;              
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; 
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow-y: auto;      
+    }
+
+    .tab-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;         
+    }
+
+    .tab-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .tab-pane .row {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 0;
+      overflow-y: auto;
+    }
+
+   
+    .avatar-wrap {
+      width: 140px; 
+      height: 140px;
+    }
+
+    .team-card {
+      width: 100%;          
+      margin: 0.5rem 0;      
+      flex-shrink: 0;        
+    }
+
+    .team-card img {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .team-tabs {
+      margin-bottom: 1rem; 
+    }
+  }
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<section id="teams-section">
+  <div class="overlay"></div>
+
+  <div class="text-center mt-5">
+    <h1 class="hero-title">👥 Meet Our Teams</h1>
+    <p class="tagline">✨ Discover the people <span class="highlight-yellow">behind the magic</span></p>
+  </div>
+
+  <div class="container mt-5">
+    <ul class="nav nav-pills justify-content-center team-tabs mb-4" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#corecommittee">Core Committee</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#webteam">Web Team</button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- Core Committee -->
+      <div class="tab-pane fade show active" id="corecommittee">
+        <div class="row justify-content-center g-4">
+          {% for member in core_committee %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex"> 
+              <div class="team-card w-100"> 
+                <div class="avatar-wrap mx-auto"> 
+                  {% if member.photo %}
+                    <img src="{{ member.photo.url }}" alt="{{ member.name }}">
+                  {% else %}
+                    <!-- <img src="{% static 'images/placeholder-avatar.png' %}" alt="No photo"> -->
+                  {% endif %}
+                </div>
+                <div class="team-meta"> 
+                  <h5 class="member-name">{{ member.name }}</h5>
+                  <p class="member-role">{{ member.role }}</p>
+                  {% if member.linkedin %}
+                    <a href="{{ member.linkedin }}" target="_blank" rel="noopener" class="btn btn-warning btn-sm w-100 mt-2"> 
+                      <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Web Team -->
+      <div class="tab-pane fade" id="webteam">
+        <div class="row justify-content-center g-4">
+          {% for member in web_team %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex"> 
+              <div class="team-card w-100">
+                <div class="avatar-wrap mx-auto">
+                  {% if member.image %}
+                    <img src="{{ member.image.url }}" alt="{{ member.name }}">
+                  {% else %}
+                    <img src="{% static 'images/placeholder-avatar.png' %}" alt="No photo">
+                  {% endif %}
+                </div>
+                <div class="team-meta">
+                  <h5 class="member-name">{{ member.name }}</h5>
+                  <p class="member-role">{{ member.position }}</p>
+                  {% if member.linkedin_link %}
+                    <a href="{{ member.linkedin_link }}" target="_blank" rel="noopener" class="btn btn-warning btn-sm w-100 mt-2"> 
+                      <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

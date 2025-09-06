@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Web Team {% endblock %}
+
+{% block extra_css %}
+<style>
+  
+  #webteam-section {
+    position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #111, #222);
+    color: #fff;
+    overflow: hidden;
+  }
+
+  #webteam-section .overlay {
+    position: absolute;
+    inset: 0;
+    animation: shimmer 6s infinite linear;
+    z-index: 0;
+  }
+
+  #webteam-section .container, 
+  #webteam-section .text-center {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #00eaff;
+    text-shadow: 0 0 8px #ff3c2e, 0 0 16px #ff3c2e;
+  }
+
+  .team-card {
+    padding: 1rem;
+    border-radius: 16px;
+    background: rgba(20,20,20,0.95);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px #00eaff, 0 0 30px #ffcc00;
+  }
+
+  .team-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border: 3px solid #00eaff;
+    box-shadow: 0 0 10px #ff3c2e;
+    background: #111;
+    padding: 4px;
+  }
+
+  .card-title {
+    color: #ffcc00 !important;
+    font-weight: 700;
+  }
+
+  .card-body p {
+    color: #ccc !important;
+    font-size: 0.9rem;
+  }
+
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section id="webteam-section">
+  <div class="overlay"></div>
+
+  <div class="text-center mt-5">
+    <h1 class="hero-title">💻 Web Team</h1>
+    <p class="tagline">The brains <span class="highlight-yellow">behind the website ✨</span></p>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center g-4">
+      {% for member in web_team %}
+        <div class="col-md-3 col-sm-6">
+          <div class="team-card text-center h-100">
+            {% if member.photo %}
+              <img src="{{ member.photo.url }}" alt="{{ member.name }}">
+            {% else %}
+              <img src="{% static 'images/placeholder-avatar.png' %}" alt="No photo">
+            {% endif %}
+            <div class="team-meta mt-2">
+              <h5 class="member-name">{{ member.name }}</h5>
+              <p class="member-role">{{ member.role }}</p>
+              <div class="social-links">
+                {% if member.linkedin %}
+                  <a href="{{ member.linkedin }}" target="_blank"><i class="bi bi-linkedin"></i></a>
+                {% endif %}
+                {% if member.github %}
+                  <a href="{{ member.github }}" target="_blank"><i class="bi bi-github"></i></a>
+                {% endif %}
+                {% if member.email %}
+                  <a href="mailto:{{ member.email }}"><i class="bi bi-envelope-fill"></i></a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

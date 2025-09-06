@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Welcome to The Freshers 2k25!</h1>
+            <p class="tagline">
+                Join us for an <span class="highlight-red">unforgettable experience</span> of
+                <span class="highlight-yellow">freshers' games</span>, music, and more.
+            </p>
+            <div class="timer-box">
+                <h4>The Games Begin In...</h4>
+                <div class="timer-grid">
+                    <div class="text-center">
+                        <div class="time-unit" id="days">00</div>
+                        <div class="time-label">Days</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="time-unit" id="hours">00</div>
+                        <div class="time-label">Hours</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="time-unit" id="minutes">00</div>
+                        <div class="time-label">Minutes</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="time-unit" id="seconds">00</div>
+                        <div class="time-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-links">
+                <a href="{% url 'schedule' %}" class="btn btn-secondary">Schedule</a>
+                <!-- <a href="{% url 'teams' %}" class="btn btn-secondary">Teams</a> -->
+                <a href="{% url 'events' %}" class="btn btn-secondary">Events</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+    <section id="featured-events" class="content-section">
+    <div class="container">
+        <h2 class="text-center mb-4">🎬 Featured Events</h2>
+        
+        <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="event-card">
+                        <div class="card-body">
+                            <h5 class="title">External Band Performance (IGMC) </h5>
+                            <p class="description">Vibrant and Elegant Music showdown.</p>
+                            <!-- <a class="btn-pink" href="{% url 'events' %}">Learn More</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="event-card">
+                        <div class="card-body">
+                            <h5 class="title">External Dj</h5>
+                            <p class="description">Thundering Beats Shaking Stage!!.</p>
+                            <!-- <a class="btn-pink" href="{% url 'events' %}">Learn More</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="event-card">
+                        <div class="card-body">
+                            <h5 class="title">Movie screening</h5>
+                            <p class="description">Relax Time.... </p>
+                            <!-- <a class="btn-pink" href="{% url 'events' %}">Learn More</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+    <section class="content-section" id="home-section">
+        <div class="container">
+            <div class="row d-flex flex-wrap">
+                <div class="col-md-6 mb-4">
+                    {% if user.is_authenticated %}
+                        <div class="card bg-dark text-white">
+                            <h3 class="mb-3">You are already registered 🎉</h3>
+                            <p>Your registration form is now disabled.</p>
+                        </div>
+                    {% else %}
+                        <div class="card bg-dark text-white">
+                            <h3 class="mb-4">Registration Portal</h3>
+                            <p>Sign up to join the event.</p>
+                            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white">
+                        <h3 class="mb-3">Announcements</h3>
+                        <ul class="list-unstyled">
+                            <li>🎬 Freshers 2025 registrations open now!</li>
+                          
+                            <li>🏆 Freshers Sports have started</li>
+                            <li> Merchandise will be sold in FF2</li>
+                            <li> Coverage room is  SF3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const targetDate = new Date("Sep 5, 2025 10:00:00").getTime();
+    const ids = ["days","hours","minutes","seconds"];
+    function tick() {
+        const now = Date.now();
+        let diff = targetDate - now;
+        if (diff <= 0) { ids.forEach(id => document.getElementById(id).textContent = "00"); return; }
+        const d = Math.floor(diff / (1000*60*60*24));
+        diff %= (1000*60*60*24);
+        const h = Math.floor(diff / (1000*60*60));
+        diff %= (1000*60*60);
+        const m = Math.floor(diff / (1000*60));
+        const s = Math.floor((diff % (1000*60)) / 1000);
+        document.getElementById("days").textContent = String(d).padStart(2,"0");
+        document.getElementById("hours").textContent = String(h).padStart(2,"0");
+        document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+        document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
+</script>
+{% endblock %}  

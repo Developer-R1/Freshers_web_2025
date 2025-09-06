@@ -1,0 +1,60 @@
+{% load static %}
+<link rel="stylesheet" href='{% static "css/nav.css" %}'>
+<nav class="custom-navbar">
+    <div class="nav-container">
+        <a class="nav-brand" href="{% url 'home' %}">Freshers25'</a>
+        <button class="nav-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-icon"></span>
+        </button>
+        <div class="nav-links-wrapper collapse" id="Nav">
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'events' %}">EVENTS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'schedule' %}">SCHEDULES</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teams' %}">TEAMS</a>
+                </li> -->
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}">
+                            <img src="../static/images/Nodp.jpg" alt="Profile Picture" class="profile-pic">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'signup' %}" class="sign-up-btn">Sign Up</a>
+                    {% endif %}
+            </ul>
+        </div>
+    </div>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  const toggler = document.querySelector('.nav-toggler');
+  const navMenu = document.querySelector('.nav-links-wrapper');
+
+  toggler.addEventListener('click', function() {
+    const isExpanded = toggler.getAttribute('aria-expanded') === 'true';
+    if (isExpanded) {
+      navMenu.classList.remove('show');
+      toggler.setAttribute('aria-expanded', 'false');
+    } else {
+      navMenu.classList.add('show');
+      toggler.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+
+  const navLinks = document.querySelectorAll('.nav-links .nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navMenu.classList.remove('show');
+      toggler.setAttribute('aria-expanded', 'false');
+    });
+  });
+});
+</script>
+</nav>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Verify OTP{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sign_up.css' %}">
+{% endblock %}
+{% block content %}
+<main class="login-page-wrapper">
+<div class="form-container">
+  <h1>Verify OTP</h1>
+  <form method="post">
+    {% csrf_token %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert error-message">{{ message }}</div> 
+      {% endfor %}
+    {% endif %}
+    <div class="form-group">
+      <label for="otp">Enter OTP</label>
+      <input type="text" name="otp" required>
+    </div>
+    <button type="submit" class="form-button">Verify</button>
+  </form>
+</div>
+</main>
+{% endblock %}

@@ -1,0 +1,279 @@
+:root {
+    --color-primary-gold: #ffdf00;
+    --color-secondary-red: #ff0055;
+    --color-dark-bg: #1a1a1a;
+    --color-card-bg: #222;
+    --color-text-light: #fff;
+    --color-text-muted: #ccc;
+    --color-text-dark: #000;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--color-dark-bg);
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.events-page {
+    max-width: 1200px;
+    margin: auto;
+    padding: var(--spacing-md) var(--spacing-sm);
+}
+
+.theater-container {
+    background: var(--color-dark-bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+    flex: 1;
+}
+
+.theater-stage {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 80px auto var(--spacing-md); 
+    background: var(--color-card-bg);
+    border-radius: 16px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+}
+
+.spotlight {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 150px;
+    background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+    z-index: -1;
+}
+
+
+.heading {
+    color: var(--color-primary-gold);
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
+}
+
+.subtext {
+    color: var(--color-text-muted);
+    text-align: center;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 1.5;
+}
+
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2.5rem;
+}
+
+.tab-button {
+    background: transparent;
+    border: 2px solid var(--color-primary-gold);
+    color: var(--color-text-light);
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover,
+.tab-button.active {
+    background: var(--color-primary-gold);
+    color: var(--color-text-dark);
+    box-shadow: 0 0 15px rgba(255, 223, 0, 0.5);
+}
+
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.event-card {
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border-left: 4px solid #ffdf00;
+}
+
+.event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary-gold);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px rgba(255, 223, 0, 0.5);
+}
+
+.description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+
+.event-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.event-details li {
+    margin-bottom: 0.5rem;
+}
+
+
+.progress-section {
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    background: #333;
+    border-radius: 6px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--color-secondary-red), var(--color-primary-gold));
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity));
+    --bs-bg-opacity: 1;
+    color: var(--color-text-dark);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;background: var(--color-primary-gold);
+    color: var(--color-text-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--color-secondary-red);
+    color: var(--color-secondary-red);
+}
+
+.btn-outline:hover {
+    border: 2px solid var(--color-primary-gold);
+    color:  var(--color-primary-gold);
+}
+
+.coordinator p {
+    display: flex;
+    align-items: center;
+}
+
+.phone {
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+
+
+@media (max-width: 991px) {
+  
+    .theater-stage {
+        margin-top: 100px; 
+        margin-left: auto; 
+        margin-right: auto;
+        padding: 20px 15px; 
+    }
+
+    .events-page {
+        padding: 1rem;
+    }
+
+    .event-grid {
+        gap: 1.5rem;
+    }
+
+    .event-card {
+        padding: 1rem;
+    }
+
+    .button-row {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .tab-button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .theater-container {
+        padding-top: 60px; 
+        margin-bottom: 2rem; 
+    }
+
+    body {
+        padding-top: 0; 
+    }
+}
+
